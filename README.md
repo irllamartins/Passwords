@@ -12,6 +12,6 @@ Ele consite de um arquivo csv e gerara outros arquivos atraves de estruturas de 
 # Ordenações
 - [x] SelectionSort
 - [x] InsertionSort
-- [x] QuickSortSort
+- [x] QuickSort
 - [x] QuickSort mediana de 3
 - [x] HeapSort
