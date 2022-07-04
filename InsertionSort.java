@@ -56,24 +56,34 @@ public class InsertionSort extends Arquivo {
 		int j;
 		String[] aux;
 		String[][] banco = bancoDeDados.clone();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat formato = new SimpleDateFormat("MM/yyyy");
+
 		long tempoInicial = System.currentTimeMillis();
 		for (int k = 1; k < banco.length; k++) {
 			aux = banco[k];
-			Date key = comparaDataMes(banco[k][2]);
-			j = k - 1;
-			// System.out.println(key);
-			while (j > 0 && key.compareTo(comparaDataMes(banco[j][2])) < 0) {
-				banco[j + 1] = banco[j];
-				j = j - 1;
-				// System.out.println("->"+banco[j][0]+" "+banco[j][1]+" "+banco[j][2]);
+
+			try {
+				Date key = formato.parse(formato.format(formatter.parse(banco[k][2])));
+				j = k - 1;
+				// System.out.println(key);
+				while (j > 0 && key.compareTo(formato.parse(formato.format(formatter.parse(banco[j][2])))) < 0){
+					banco[j + 1] = banco[j];
+					j = j - 1;
+					// System.out.println("->"+banco[j][0]+" "+banco[j][1]+" "+banco[j][2]);
+				}
+				banco[j + 1] = aux;
 			}
-			banco[j + 1] = aux;
+		 catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		}
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
 		return banco;
 	}
 
-	// não precisa fazer agora,não quero atrapalhar o seu projeto!!!!
+    //ordena atravez do campo da data
 	public String[][] insertionSortDate(String[][] bancoDeDados) {
 		int j;
 		String[] aux;
@@ -97,6 +107,7 @@ public class InsertionSort extends Arquivo {
 				e.printStackTrace();
 			}
 		}
+
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
 		return banco;
 	}

@@ -50,6 +50,25 @@ public abstract class Arquivo {
 		}
 
 	}
+	public void transcricaoClassificacao(String[][] bancoDeDados, String nomeArquivo) {
+
+		try {
+			FileWriter arq = new FileWriter(nomeArquivo);
+			PrintWriter gravarArq = new PrintWriter(arq);
+
+			gravarArq.println("," + bancoDeDados[0][0] + "," + bancoDeDados[0][1] + "," + bancoDeDados[0][2]);
+			for (int k = 1; k < bancoDeDados.length; k++) {
+
+				gravarArq.println(k-1 + "," + bancoDeDados[k][0] + "," + bancoDeDados[k][1] + "," + bancoDeDados[k][2]);
+			}
+			arq.close();
+			System.out.println("O Arquivo " + nomeArquivo + " gerado com sucesso!");
+
+		} catch (IOException e) {
+			System.err.println("O Arquivo não pode ser criado!\n");
+		}
+
+	}
 
 
 	public static String[] tratamentoDados(String linha) {
@@ -79,26 +98,6 @@ public abstract class Arquivo {
 		array[j] = aux;
 	}
 	
-	/*public static Date comparaDataMesAno(String data) {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		Date date = null;
-		 try {
-			 date = formatter.parse(data);
-	     } catch (ParseException e) {
-	            e.printStackTrace();
-	      }
-		 return date;
-	}*/
-	public static Date comparaDataMes(String data) {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		SimpleDateFormat formato = new SimpleDateFormat("MM/yyyy");
-		Date date = null;
-		 try {
-			 date = formato.parse(formato.format(formatter.parse(data)));
-	     } catch (ParseException e) {
-	            e.printStackTrace();
-	      }
-		 return date;
-	}
+
 		
 }
