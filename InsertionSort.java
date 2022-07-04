@@ -1,125 +1,125 @@
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class InsertionSort extends Arquivo {
-	private String[][] casoMedio;
-	private String[][] piorCaso;
-	private String[][] melhorCaso;
-
-	public InsertionSort(String[][] bancoDeDados) {
+	private Password[] casoMedio;
+	private Password[] piorCaso;
+	private Password[] melhorCaso;
+	
+	public InsertionSort( Password[] bancoDeDados) {
 		this.casoMedio = bancoDeDados;
 	}
+	
 
-	public String[][] getCasoMedio() {
+	public Password[] getCasoMedio() {
 		return casoMedio;
 	}
 
-	public void setCasoMedio(String[][] casoMedio) {
+	public void setCasoMedio(Password[] casoMedio) {
 		this.casoMedio = casoMedio;
 	}
 
-	public String[][] getPiorCaso() {
+	public Password[] getPiorCaso() {
 		return piorCaso;
 	}
 
-	public void setPiorCaso(String[][] piorCaso) {
+	public void setPiorCaso(Password[] piorCaso) {
 		this.piorCaso = piorCaso;
 	}
 
-	public String[][] getMelhorCaso() {
+	public Password[] getMelhorCaso() {
 		return melhorCaso;
 	}
-
-	public void setMelhorCaso(String[][] melhorCaso) {
+	public void setMelhorCaso(Password[] melhorCaso) {
 		this.melhorCaso = melhorCaso;
 	}
 
-	public String[][] insertionSortLength(String[][] bancoDeDados) {
-		String[][] banco = bancoDeDados.clone();
-		long tempoInicial = System.currentTimeMillis();
-		for (int i = 2; i < banco.length; ++i) {
-			int key = verificarNumero(banco[i][1]);
-			int j = i - 1;
+	//ordenação insertionSort pelo tamanho
+	public Password[] insertionSortLength(Password[] bancoDeDados) {
+	    int j;
+	    Password[] banco=bancoDeDados.clone();
+	    
+	    long tempoInicial = System.currentTimeMillis();
+	    
+		for(int k=1; k<banco.length; k++)   {
 
-			while (j >= 0 && verificarNumero(banco[j][1]) > key) {
-				troca(banco, j, j + 1);
-				j = j - 1;
+			Password key = banco[k];
+			j = k-1;
+			while(j>0 &&(key.getLength()<banco[j].getLength()))   {
+				banco[j+1] = banco[j];
+				j = j-1;
 			}
-			banco[j + 1][1] = Integer.toString(key);
+			banco[j+1] = key;
+			
 		}
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
-		return banco;
+		return banco; 
 	}
-
-	public String[][] insertionSortMonth(String[][] bancoDeDados) {
-		int j;
-		String[] aux;
-		String[][] banco = bancoDeDados.clone();
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	
+	//ordenação insertionSort pelo mes/ano
+	public Password[] insertionSortMonth(Password[] bancoDeDados){
+	    int j;
+	    Password[] banco=bancoDeDados.clone();
+	    
 		SimpleDateFormat formato = new SimpleDateFormat("MM/yyyy");
-
+		
 		long tempoInicial = System.currentTimeMillis();
-		for (int k = 1; k < banco.length; k++) {
-			aux = banco[k];
 
-			try {
-				Date key = formato.parse(formato.format(formatter.parse(banco[k][2])));
-				j = k - 1;
-				// System.out.println(key);
-				while (j > 0 && key.compareTo(formato.parse(formato.format(formatter.parse(banco[j][2])))) < 0){
-					banco[j + 1] = banco[j];
-					j = j - 1;
-					// System.out.println("->"+banco[j][0]+" "+banco[j][1]+" "+banco[j][2]);
-				}
-				banco[j + 1] = aux;
-			}
-		 catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		}
-		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
-		return banco;
-	}
+		for(int k=1; k<banco.length; k++)   {
 
-    //ordena atravez do campo da data
-	public String[][] insertionSortDate(String[][] bancoDeDados) {
-		int j;
-		String[] aux;
-		String[][] banco = bancoDeDados.clone();
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		long tempoInicial = System.currentTimeMillis();
-		for (int k = 1; k < banco.length; k++) {
-			aux = banco[k];
+			Password key = banco[k];
+			j = k-1;
 			try {
-				Date key = formatter.parse(banco[k][2]);
-				j = k - 1;
-				// System.out.println(formatter.format(key)+"#");
-				while (j > 0 && (key.compareTo(formatter.parse(banco[j][2])) < 0)) {
-					// System.out.println(formatter.parse(banco[j][2])+"!");
-					banco[j + 1] = banco[j];
-					j = j - 1;
-					// System.out.println("->"+banco[j][0]+" "+banco[j][1]+" "+banco[j][2]);
+
+				while(j>0 && formato.parse(formato.format(key.getData())).compareTo(formato.parse(formato.format(banco[j].getData())))<0)   {
+					
+					banco[j+1] = banco[j];
+					j = j-1;
 				}
-				banco[j + 1] = aux;
+				
 			} catch (ParseException e) {
-				e.printStackTrace();
+
+				System.err.println("Não foi possivel converter data!");
 			}
+			banco[j+1] = key;
+			
 		}
+		
+		System.out.println("O metodo executou em " + (System.currentTimeMillis()-tempoInicial)+ " ms\n" );
+		return banco; 
+	}
+	
+	//ordenação insertionSort pela data
+	public Password[] insertionSortDate(Password[] bancoDeDados){
+	    int j;
+	    Password[] banco=bancoDeDados.clone();
+	    long tempoInicial = System.currentTimeMillis();
+	    
+		for(int k=1; k<banco.length; k++)   {
 
+			Password key = banco[k];
+			j = k-1;
+			while(j>0 &&(key.getData().compareTo(banco[j].getData())<0))   {
+				banco[j+1] = banco[j];
+				j = j-1;
+			}
+			banco[j+1] = key;
+			
+		}
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
-		return banco;
+		return banco; 
 	}
-
-	public void gerarCasos(String[][] bancoOrdenado) {
-		setMelhorCaso(bancoOrdenado);
-		setPiorCaso(construirPiorCaso(melhorCaso));
-
+	
+	public void gerarCasos(Password[] bancoOrdenado) {
+		
+		setPiorCaso(construirCasoDecrescente(bancoOrdenado));
+		
+		setMelhorCaso(bancoOrdenado.clone());
+		
 	}
-
+	
+	//chama a ordenação que vai ser classificada pelo tamanho,gera os casos crescente e decrescentemente e finaliza criando o arquivo
 	public void transcricaoLenghtCaso() {
-
 		System.out.println("#------------InsertSort-Lenght------------#");
 		transcricao(casoMedio, "passwords_length_insertionSort_medioCaso.csv");
 		gerarCasos(insertionSortLength(casoMedio));
@@ -128,9 +128,9 @@ public class InsertionSort extends Arquivo {
 		transcricao(melhorCaso, "passwords_length_insertionSort_melhorCaso.csv");
 		insertionSortLength(melhorCaso);
 	}
-
+	
+	//chama a ordenação que vai ser classificada pelo mes/data,gera os casos crescente e decrescentemente e finaliza criando o arquivo
 	public void transcricaoMonthCaso() {
-
 		System.out.println("#------------InsertSort-Month------------#");
 		transcricao(casoMedio, "passwords_data_month_insertionSort_medioCaso.csv");
 		gerarCasos(insertionSortMonth(casoMedio));
@@ -139,15 +139,15 @@ public class InsertionSort extends Arquivo {
 		transcricao(melhorCaso, "passwords_data_month_insertionSort_melhorCaso.csv");
 		insertionSortMonth(melhorCaso);
 	}
-
+	
+	//chama a ordenação que vai ser classificada pela data,gera os casos crescente e decrescentemente e finaliza criando o arquivo
 	public void transcricaoDataCaso() {
-
 		System.out.println("#------------InsertSort-Date------------#");
 		transcricao(casoMedio, "passwords_data_insertionSort_medioCaso.csv");
 		gerarCasos(insertionSortDate(casoMedio));
 		transcricao(piorCaso, "passwords_data_insertionSort_piorCaso.csv");
 		insertionSortDate(piorCaso);
-		transcricao(melhorCaso, "passwords_data_insertionSort_melhorCaso.csv");
+		transcricao(melhorCaso,"passwords_data_insertionSort_melhorCaso.csv");
 		insertionSortDate(melhorCaso);
 	}
 
