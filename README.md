@@ -2,7 +2,7 @@
 Projeto desenvolvido na disciplina de Estrutura de Dados
 Ele consite de um arquivo csv e gerara outros arquivos atraves de estruturas de ordenações
 
-> <b>Link do acesso ao documento:</b>https://docs.google.com/document/d/1Mfeco-adOz58s2IRGwqho9Dfbg5sFc7Ss-IKZ8QFTuA/edit?usp=sharing
+> <b>Link do acesso ao documento:</b> https://docs.google.com/document/d/1Mfeco-adOz58s2IRGwqho9Dfbg5sFc7Ss-IKZ8QFTuA/edit?usp=sharing
 # Instruções de utilização
 1. Baixe os arquivos
 2. escolha sua IDE
