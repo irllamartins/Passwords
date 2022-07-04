@@ -1,4 +1,4 @@
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -65,13 +65,13 @@ public class ClassificarSenha extends Arquivo {
 		
 						indice++;
 					}catch (ParseException e) {
-						System.err.println("Ocorreu um erro inesperado na converÁaı de data!\n");
+						System.err.println("Ocorreu um erro inesperado na conver√ßa√µ de data!\n");
 					}
 				}
 				
 				arquivo.close();
 			} catch (IOException e) {
-				System.err.println("Arquivo n„o foi encontrado!Verifique o diretorio do arquivo!\n");
+				System.err.println("Arquivo n√£o foi encontrado!Verifique o diretorio do arquivo!\n");
 			}
 			return bancoDeDados;
 	
@@ -108,7 +108,7 @@ public class ClassificarSenha extends Arquivo {
 			arquivo.close();
 
 		} catch (IOException e) {
-			System.err.println("Arquivo n„o foi encontrado!Verifique o diretorio do arquivo!\n");
+			System.err.println("Arquivo n√£o foi encontrado!Verifique o diretorio do arquivo!\n");
 		}
 
 		return contador;
@@ -154,7 +154,7 @@ public class ClassificarSenha extends Arquivo {
             return "muito ruim";
         }
         else{
-            return "sem classificaÁ„o";
+            return "sem classifica√ß√£o";
         }
 
     }
@@ -223,4 +223,4 @@ public class ClassificarSenha extends Arquivo {
 
 
 
-}
+}*/
