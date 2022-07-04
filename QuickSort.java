@@ -48,7 +48,7 @@ public class QuickSort extends Arquivo {
 	public String[][] startQuickSortMonth(String[][] bancoDeDados, int num) {
 		String[][] banco = bancoDeDados.clone();
 		long tempoInicial = System.currentTimeMillis();
-		quickSortMonth(banco, 1, num);
+	//	quickSortMonth(banco, 1, num);
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
 		return banco;
 	}
@@ -83,7 +83,7 @@ public class QuickSort extends Arquivo {
 		troca(vetor, i + 1, fim);
 		return i + 1;
 	}
-
+/*
 	public void quickSortMonth(String[][] vetor, int inicio, int fim) {
 		if (inicio < fim) {
 			int meio = particaoMonth(vetor, inicio, fim);
@@ -108,7 +108,7 @@ public class QuickSort extends Arquivo {
 
 		troca(vetor, i + 1, fim);
 		return i + 1;
-	}
+	}*/
 
 	public void quickSortDate(String[][] vetor, int inicio, int fim) {
 		if (inicio < fim) {
