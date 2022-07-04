@@ -3,45 +3,42 @@ import java.text.SimpleDateFormat;
 
 public class HeapSort extends Arquivo {
 	
-	private Password[] casoMedio;
-	private Password[] piorCaso;
-	private Password[] melhorCaso;
+	private String[][] casoMedio;
+	private String[][] piorCaso;
+	private String[][] melhorCaso;
 	
-	public HeapSort(Password[] bancoDeDados) {
+	public HeapSort(String[][] bancoDeDados) {
 		this.casoMedio = bancoDeDados;
 	}
-	
-	public Password[] getCasoMedio() {
+
+	public String[][] getCasoMedio() {
 		return casoMedio;
 	}
 
-	public void setCasoMedio(Password[] casoMedio) {
+	public void setCasoMedio(String[][] casoMedio) {
 		this.casoMedio = casoMedio;
 	}
 
-	public Password[] getPiorCaso() {
+	public String[][] getPiorCaso() {
 		return piorCaso;
 	}
 
-	public void setPiorCaso(Password[] piorCaso) {
+	public void setPiorCaso(String[][] piorCaso) {
 		this.piorCaso = piorCaso;
 	}
 
-	public Password[] getMelhorCaso() {
+	public String[][] getMelhorCaso() {
 		return melhorCaso;
 	}
 
-	public void setMelhorCaso(Password[] melhorCaso) {
+	public void setMelhorCaso(String[][] melhorCaso) {
 		this.melhorCaso = melhorCaso;
 	}
-
-
-	//Ordenação do heapSort pelo tamanho 
-	public Password[] heapSortLength(Password[] bancoDeDados) {
-		Password[] banco;
+	
+	public String[][] heapSortLength(String [][] bancoDeDados) {
+		String[][] banco;
 
 		banco = gerarListaOrdenar(bancoDeDados,1);
-		
 		int n = banco.length;
 		
 		long tempoInicial = System.currentTimeMillis();
@@ -56,22 +53,21 @@ public class HeapSort extends Arquivo {
 	        noLength(banco, i, 0);
 	    }
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
-		
 		banco = gerarListaFinal(bancoDeDados,banco);
 		return banco;
 	}
 	
-	public void noLength(Password[] banco, int n, int i) {
+	public void noLength(String banco[][], int n, int i) {
 		
 		int maior = i;
 		int l = 2 * i + 1;
 		int r = 2 * i + 2;
 		
-		if (l < n && (banco[l].getLength() > banco[maior].getLength())){
+		if (l < n && (Integer.parseInt(banco[l][1])) > Integer.parseInt(banco[maior][1])){
 			maior = l;
 			}
 		
-		if (r < n && (banco[r].getLength()> banco[maior].getLength())){
+		if (r < n && (Integer.parseInt(banco[r][1]) > Integer.parseInt(banco[maior][1]))){
 			maior = r;
 	        }
 		
@@ -82,14 +78,11 @@ public class HeapSort extends Arquivo {
 	    }
 	}
 	
-	//Ordenação do heapSort pelo mes/ano
-	public Password[] heapSortMonth(Password[] bancoDeDados) {
-		Password[] banco;
+	public String[][] heapSortMonth(String [][] bancoDeDados) {
+		String[][] banco;
 
 		banco = gerarListaOrdenar(bancoDeDados,1);
-		
 		int n = banco.length;
-		
 		long tempoInicial = System.currentTimeMillis();
 		
 		for (int i = (n / 2) - 1; i >= 0; i--) {
@@ -102,23 +95,23 @@ public class HeapSort extends Arquivo {
 	        noMonth(banco, i, 0);
 	    }
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
-		
 		banco = gerarListaFinal(bancoDeDados,banco);
 		return banco;
 	}
 	
-	public void noMonth(Password[] banco, int n, int i) {
+	public void noMonth(String banco[][], int n, int i) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat formato = new SimpleDateFormat("MM/yyyy");
 		
 		int maior = i;
 		int l = 2 * i + 1;
 		int r = 2 * i + 2;
 		try {
-			if (l < n &&( (formato.parse(formato.format(banco[l].getData()))).compareTo(formato.parse(formato.format(banco[maior].getData())))>0)){
+			if (l < n && (formato.parse(formato.format(formatter.parse(banco[l][2]))).compareTo(formato.parse(formato.format(formatter.parse(banco[maior][2]))))<0)){
 				maior = l;
 				}
 			
-			if (r < n && (formato.parse(formato.format(banco[l].getData())).compareTo(formato.parse(formato.format(banco[maior].getData())))>0)){
+			if (r < n && (formato.parse(formato.format(formatter.parse(banco[l][2]))).compareTo(formato.parse(formato.format(formatter.parse(banco[maior][2]))))>0)){
 				maior = r;
 		        }
 		}catch (ParseException e) {
@@ -130,10 +123,8 @@ public class HeapSort extends Arquivo {
 	        noMonth(banco, n, maior);
 	    }
 	}
-	
-	//Ordenação do heapSort pela data 
-	public Password[] heapSortDate(Password[] bancoDeDados) {
-		Password[] banco;
+	public String[][] heapSortDate(String [][] bancoDeDados) {
+		String[][] banco;
 
 		banco = gerarListaOrdenar(bancoDeDados,1);
 		int n = banco.length;
@@ -153,28 +144,31 @@ public class HeapSort extends Arquivo {
 		return banco;
 	}
 	
-	public void noDate(Password[] banco, int n, int i) {
+	public void noDate(String banco[][], int n, int i) {
+	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		
 		int maior = i;
 		int l = 2 * i + 1;
 		int r = 2 * i + 2;
-		if (l < n && (banco[l].getData().compareTo(banco[maior].getData()))>0){
-			maior = l;
-			}
+		try {
+			if (l < n && (formatter.parse(banco[l][2]).compareTo(formatter.parse(banco[maior][2])))<0){
+				maior = l;
+				}
 			
-		if (r < n && (banco[l].getData().compareTo(banco[maior].getData()))>0){
-			maior = r;
-		       } 
+			if (r < n && (formatter.parse(banco[l][2]).compareTo(formatter.parse(banco[maior][2])))>0){
+				maior = r;
+		        }
+		}catch (ParseException e) {
+			e.printStackTrace();
+		}  
 		if (maior != i) {
 			troca(banco,i,maior);
 	  
 			noDate(banco, n, maior);
 	    }
 	}
-	
-	//gera a lista ordenada
-	public Password[] gerarListaOrdenar(Password[] listaInicial,int inicio) {
-		Password[] listaFinal = new Password[listaInicial.length-inicio];
+	public String[][] gerarListaOrdenar(String [][] listaInicial,int inicio) {
+		String [][] listaFinal = new String[listaInicial.length-inicio][3];
 		
 		for(int i=0;i<listaFinal.length;i++) {
 			listaFinal[i] = listaInicial[i+inicio];
@@ -183,9 +177,8 @@ public class HeapSort extends Arquivo {
 		return listaFinal;
 	}
 	
-	//gera lista final
-	public Password[] gerarListaFinal(Password[] listaComColuna, Password[] listaHeap) {
-		Password[] listaFinal = new Password[listaComColuna.length];
+	public String[][] gerarListaFinal(String [][] listaComColuna,String [][] listaHeap) {
+		String [][] listaFinal = new String[listaComColuna.length][3];
 		
 		listaFinal[0] = listaComColuna[0];
 		for(int i=1;i<listaFinal.length;i++) {
@@ -194,14 +187,12 @@ public class HeapSort extends Arquivo {
 		return listaFinal;
 	}
 	
-	//gera os casos crescente e decrescentemente
-	public void gerarCasos(Password[] bancoOrdenado) {
+	public void gerarCasos(String [][] bancoOrdenado) {
 			setMelhorCaso(bancoOrdenado);
-			setPiorCaso(construirCasoDecrescente(melhorCaso.clone()));
+			setPiorCaso(construirPiorCaso(melhorCaso));
 			
 	}
 	
-	//chama a ordenação que vai ser classificada pelo tamanho,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
 	public void transcricaoLenghtCaso() {
 
 		System.out.println("#------------HeapSort-Lenght------------#");
@@ -214,7 +205,6 @@ public class HeapSort extends Arquivo {
 
 	}
 	
-	//chama a ordenação que vai ser classificada pelo mes/ano,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
 	public void transcricaoMonthCaso() {
 		System.out.println("#------------HeapSort-Month------------#");
 		transcricao(casoMedio,"passwords_data_month_heapSort_medioCaso.csv");
@@ -224,15 +214,13 @@ public class HeapSort extends Arquivo {
 		transcricao(melhorCaso,"passwords_data_month_heapSort_melhorCaso.csv");
 		heapSortMonth(melhorCaso);
 	}
-	
-	//chama a ordenação que vai ser classificada pela data,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
 	public void transcricaoDataCaso() {
 		System.out.println("#------------HeapSort-Date------------#");
-		transcricao(casoMedio,"passwords_data_heapSort_medioCaso.csv");;
+		transcricao(casoMedio,"passwords_data_heapSortt_medioCaso.csv");;
 		gerarCasos(heapSortDate(casoMedio));
 		transcricao(piorCaso,"passwords_data_heapSort_piorCaso.csv");
 		heapSortDate(piorCaso);
-		transcricao(melhorCaso,"passwords_data_heapSort_melhorCaso.csv");
+		transcricao(melhorCaso,"passwords_data_month_heapSort_melhorCaso.csv");
 		heapSortDate(melhorCaso);
 	}
 

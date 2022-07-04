@@ -3,66 +3,65 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class QuickSortMedian extends Arquivo {
-	private Password[] casoMedio;
-	private Password[] piorCaso;
-	private Password[] melhorCaso;
-	
-	public QuickSortMedian(Password[] bancoDeDados) {
+	private String[][] casoMedio;
+	private String[][] piorCaso;
+	private String[][] melhorCaso;
+
+	public QuickSortMedian(String[][] bancoDeDados) {
 		this.casoMedio = bancoDeDados;
-	
+
 	}
-	
-	public Password[] getCasoMedio() {
+
+	public String[][] getCasoMedio() {
 		return casoMedio;
 	}
 
-	public void setCasoMedio(Password[] casoMedio) {
+	public void setCasoMedio(String[][] casoMedio) {
 		this.casoMedio = casoMedio;
+
 	}
-	
-	public Password[] getPiorCaso() {
+
+	public String[][] getPiorCaso() {
 		return piorCaso;
 	}
 
-	public void setPiorCaso(Password[] piorCaso) {
+	public void setPiorCaso(String[][] piorCaso) {
 		this.piorCaso = piorCaso;
 	}
 
-	public Password[] getMelhorCaso() {
+	public String[][] getMelhorCaso() {
 		return melhorCaso;
 	}
 
-	public void setMelhorCaso(Password[] melhorCaso) {
+	public void setMelhorCaso(String[][] melhorCaso) {
 		this.melhorCaso = melhorCaso;
 	}
 
-
-	public Password[] startQuickSortMedianLength(Password[] bancoDeDados, int num) {
-		Password[] banco = bancoDeDados.clone();
+	public String[][] startQuickSortMedianLength(String[][] bancoDeDados, int num) {
+		String[][] banco = bancoDeDados.clone();
 		long tempoInicial = System.currentTimeMillis();
 		quickSortMedianLength(banco, 1, num);
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
 		return banco;
-	
 	}
-	
-	public Password[] startQuickSortMedianMonth(Password[] bancoDeDados, int num) {
-		Password[] banco = bancoDeDados.clone();
+
+	public String[][] startQuickSortMedianMonth(String[][] bancoDeDados, int num) {
+		String[][] banco = bancoDeDados.clone();
 		long tempoInicial = System.currentTimeMillis();
-		quickSortMedianMonth(banco, 1, num);
+		// quickSortMedianMonth(banco, 1, num);
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
 		return banco;
 	}
-	
-	public Password[] startQuickSortMedianDate(Password[] bancoDeDados, int num) {
-		Password[] banco = bancoDeDados.clone();
+
+	public String[][] startQuickSortMedianDate(String[][] bancoDeDados, int num) {
+		String[][] banco = bancoDeDados.clone();
 		long tempoInicial = System.currentTimeMillis();
 		quickSortMedianDate(banco, 1, num);
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
 		return banco;
-	}	
-	
-	public void quickSortMedianLength(Password[] vetor, int inicio, int fim) {
+	}
+
+	public void quickSortMedianLength(String[][] vetor, int inicio, int fim) {
 		if (inicio < fim) {
 			int meio = particaoLength(vetor, inicio, fim);
 			quickSortMedianLength(vetor, inicio, meio - 1);
@@ -70,12 +69,11 @@ public class QuickSortMedian extends Arquivo {
 		}
 	}
 
-	//ordenação do quickSort mediana de 3 pelo tamanho
-	public int particaoLength(Password[] vetor, int inicio, int fim) {
+	public int particaoLength(String[][] vetor, int inicio, int fim) {
 		int meio = (int) (inicio + fim) / 2;
-		int a = vetor[inicio].getLength();
-		int b = vetor[meio].getLength();
-		int c = vetor[fim].getLength();
+		int a = verificarNumero(vetor[inicio][1]);
+		int b = verificarNumero(vetor[meio][1]);
+		int c = verificarNumero(vetor[fim][1]);
 		int medianaIndice = 0;
 
 		if (a < b) {
@@ -105,13 +103,11 @@ public class QuickSortMedian extends Arquivo {
 				}
 			}
 		}
-		troca(vetor,medianaIndice, fim);
-		
-		int pivo = vetor[fim].getLength();
+		int pivo = verificarNumero(vetor[fim][1]);
 		int i = inicio - 1;
-		
+		// System.out.println("!"+i);
 		for (int j = inicio; j <= fim - 1; j++) {
-			if (vetor[j].getLength() <= pivo) {
+			if (verificarNumero(vetor[j][1]) < pivo) {
 				i = i + 1;
 				troca(vetor, i, j);
 			}
@@ -119,21 +115,20 @@ public class QuickSortMedian extends Arquivo {
 		troca(vetor, i + 1, fim);
 		return i + 1;
 	}
-	
-	//ordenação do quickSort mediana de 3 pelo mes/ano
-	public void quickSortMedianMonth(Password[] vetor, int inicio, int fim) {
-	if (inicio < fim) {
+
+	public void quickSortMedianMonth(String[][] vetor, int inicio, int fim) {
+		if (inicio < fim) {
 			int meio = particaoMonth(vetor, inicio, fim);
 			quickSortMedianMonth(vetor, inicio, meio - 1);
 			quickSortMedianMonth(vetor, inicio + 1, fim);
 		}
 	}
 
-	public int particaoMonth(Password[] vetor, int inicio, int fim) {
+	public int particaoMonth(String[][] vetor, int inicio, int fim) {
 		int meio = (int) (inicio + fim) / 2;
-		int a = vetor[inicio].getLength();
-		int b = vetor[meio].getLength();
-		int c = vetor[fim].getLength();
+		int a = Integer.parseInt(vetor[inicio][1]);
+		int b = Integer.parseInt(vetor[meio][1]);
+		int c = Integer.parseInt(vetor[fim][1]);
 		int medianaIndice = 0;
 
 		if (a < b) {
@@ -163,32 +158,20 @@ public class QuickSortMedian extends Arquivo {
 				}
 			}
 		}
-		troca(vetor,medianaIndice, fim);
-		
+		int pivo = Integer.parseInt(vetor[fim][1]);
 		int i = inicio - 1;
-		Date pivo;
-		SimpleDateFormat formato = new SimpleDateFormat("MM/yyyy");
-		try {
-			pivo = formato.parse(formato.format(vetor[fim].getData()));
-
-			for (int j = inicio; j <= fim - 1; j++) {
-
-				if (formato.parse(formato.format(vetor[j].getData())).compareTo(pivo) <= 0) {
-					i = i + 1;
-					troca(vetor, i, j);
-				}
+		// System.out.println("!"+i);
+		for (int j = inicio; j <= fim - 1; j++) {
+			if (Integer.parseInt(vetor[j][1]) <= pivo) {
+				i = i + 1;
+				troca(vetor, i, j);
 			}
-
-			troca(vetor, i + 1, fim);
-
-		} catch (ParseException e) {
-			e.printStackTrace();
 		}
+		troca(vetor, i + 1, fim);
 		return i + 1;
 	}
-	
-	//ordenação do quickSort mediana de 3 pela data
-	public void quickSortMedianDate(Password[] vetor, int inicio, int fim) {
+
+	public void quickSortMedianDate(String[][] vetor, int inicio, int fim) {
 		if (inicio < fim) {
 			int meio = particaoDate(vetor, inicio, fim);
 			quickSortMedianDate(vetor, inicio, meio - 1);
@@ -196,11 +179,11 @@ public class QuickSortMedian extends Arquivo {
 		}
 	}
 
-	public int particaoDate(Password[] vetor, int inicio, int fim) {
+	public int particaoDate(String[][] vetor, int inicio, int fim) {
 		int meio = (int) (inicio + fim) / 2;
-		int a = vetor[inicio].getLength();
-		int b = vetor[meio].getLength();
-		int c = vetor[fim].getLength();
+		int a = verificarNumero(vetor[inicio][1]);
+		int b = verificarNumero(vetor[meio][1]);
+		int c = verificarNumero(vetor[fim][1]);
 		int medianaIndice = 0;
 
 		if (a < b) {
@@ -230,31 +213,35 @@ public class QuickSortMedian extends Arquivo {
 				}
 			}
 		}
-		troca(vetor,medianaIndice, fim);
-		
-		Date pivo = vetor[fim].getData();
-		int i = inicio - 1;
-		
-		for (int j = inicio; j <= fim - 1; j++) {
-			if (vetor[j].getData().compareTo(pivo)<=0) {
-				i = i + 1;
-				troca(vetor, i, j);
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			
+			Date pivo = formatter.parse(vetor[fim][2]);
+			int i = inicio - 1;
+			// System.out.println("!"+i);
+			for (int j = inicio; j <= fim - 1; j++) {
+				if (formatter.parse(vetor[j][2]).compareTo(pivo) < 0) {
+					i = i + 1;
+					troca(vetor, i, j);
+				}
 			}
+			troca(vetor, i + 1, fim);
+			return i + 1;
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
-		troca(vetor, i + 1, fim);
-		return i + 1;
+		return 0;
 	}
-	
-	//gera os casos crescente e decrescente
-	public void gerarCasos(Password[] bancoOrdenado) {
+
+	public void gerarCasos(String[][] bancoOrdenado) {
 		setMelhorCaso(bancoOrdenado);
-		setPiorCaso(construirCasoDecrescente(melhorCaso.clone()));
-		
+		setPiorCaso(construirPiorCaso(melhorCaso));
+
 	}
-	
-	//chama a ordenação que vai ser classificada pelo tamanho,gera os casos crescente e decrescentemente e finaliza criando o arquivo
+
 	public void transcricaoLenghtCaso() {
-	System.out.println("#------------QuickSortMedian-Lenght------------#");
+		System.out.println("#------------QuickSortMedian-Lenght------------#");
 		transcricao(casoMedio, "passwords_length_quickSortMedian_medioCaso.csv");
 		startQuickSortMedianLength(casoMedio, casoMedio.length - 1);
 		transcricao(piorCaso, "passwords_length_quickSortMedian_piorCaso.csv");
@@ -262,8 +249,7 @@ public class QuickSortMedian extends Arquivo {
 		transcricao(melhorCaso, "passwords_length_quickSortMedian_melhorCaso.csv");
 		startQuickSortMedianLength(melhorCaso, melhorCaso.length - 1);
 	}
-	
-	//chama a ordenação que vai ser classificada pelo mes/ano,gera os casos crescente e decrescentemente e finaliza criando o arquivo
+
 	public void transcricaoMonthCaso() {
 		System.out.println("#------------QuickSortMedian-Month------------#");
 		transcricao(casoMedio, "passwords_data_month_quickSortMedian_medioCaso.csv");
@@ -273,8 +259,7 @@ public class QuickSortMedian extends Arquivo {
 		transcricao(melhorCaso, "passwords_data_month_quickSortMedian_melhorCaso.csv");
 		startQuickSortMedianMonth(melhorCaso, melhorCaso.length - 1);
 	}
-	
-	//chama a ordenação que vai ser classificada pela data,gera os casos crescente e decrescentemente e finaliza criando o arquivo
+
 	public void transcricaoDataCaso() {
 		System.out.println("#------------QuickSortMedian-Date------------#");
 		transcricao(casoMedio, "passwords_data_quickSortMedian_medioCaso.csv");

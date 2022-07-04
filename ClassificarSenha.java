@@ -1,137 +1,52 @@
-import java.io.BufferedReader;
-import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
+import java.io.PrintWriter;
+import java.util.regex.*;
 
 public class ClassificarSenha extends Arquivo {
-	
-    private Password [] bancoDeDados;
-    private int linhas;
 
-    public ClassificarSenha(String path) {
-    	this.linhas = contarLinha(path);
-        this.bancoDeDados = classificacao(linhas,path);
+    private String[][] bancoDeDados;
+
+
+    public ClassificarSenha(String[][] dados) {
+        this.bancoDeDados = classificacao(dados.clone());
     }
 
-	public Password[] getBancoDeDados() {
-		return bancoDeDados;
-	}
 
-	public void setBancoDeDados(Password[] bancoDeDados) {
-		this.bancoDeDados = bancoDeDados;
-	}
+    public String[][] classificacao(String[][] dados) {
 
-	public int getLinhas() {
-		return linhas;
-	}
+        String [][] banco = new String[dados.length][4];
 
-	public void setLinhas(int linhas) {
-		this.linhas = linhas;
-	}
+        banco[0][0] = dados[0][0];
+        banco[0][1] = dados[0][1];
+        banco[0][2] = dados[0][2];
+        banco[0][3] ="class";
 
+        for (int i = 1; i < banco.length; i++) {
+            banco[i][0] = dados[i][0];
+            banco[i][1] = dados[i][1];
+            banco[i][2] = dados[i][2];
+            banco[i][3] = classificaNivel(banco[i][0]);
+            //System.out.println("classifica: "+ banco[i][0]+" "+banco[i][1]+" "+ banco[i][2]+" "+ banco[i][3]);
 
-
-
-	public Password[] classificacao(int quantidade, String path) {
-	
-			String linha = null;
-			int indice = 0;
-			Password[] bancoDeDados = new Password[quantidade];
-			String colunas;
-	
-			try {
-	
-				BufferedReader arquivo = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
-	
-				colunas = arquivo.readLine()+",class";
-				bancoDeDados[0] = new Password( (colunas.substring(colunas.indexOf(",") + 1)).split(",")); 
-		
-				indice++;
-	
-				while ((linha = arquivo.readLine()) != null) {
-					try {
-						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
-
-						String[] dadosFormatados = tratamentoDados(linha);
-						
-						bancoDeDados[indice] = new Password(dadosFormatados[0],verificarNumero(dadosFormatados[1]),formatter.parse(dadosFormatados[2]),dadosFormatados[2],classificaNivel(dadosFormatados[0].replaceAll("^\"|\"$", "")));
-		
-						indice++;
-					}catch (ParseException e) {
-						System.err.println("Ocorreu um erro inesperado na converçaõ de data!\n");
-					}
-				}
-				
-				arquivo.close();
-			} catch (IOException e) {
-				System.err.println("Arquivo não foi encontrado!Verifique o diretorio do arquivo!\n");
-			}
-			return bancoDeDados;
-	
-		}
-	 
-	 private String[] tratamentoDados(String linha) {
-		
-		String palavra = null;
-		String[] dadosFormatados = new String[3];
-		int indice = dadosFormatados.length - 1;
-
-		while (indice > 0) {
-
-			palavra = linha.substring(linha.lastIndexOf(","));
-			dadosFormatados[indice] = palavra.substring(1);
-			linha = linha.substring(0, linha.lastIndexOf(","));
-			indice--;
-		}
-		dadosFormatados[indice] = linha.substring(linha.indexOf(",") + 1);
-
-		return dadosFormatados;
-
-	}
-	
-	private int contarLinha(String path) {
-		int contador = 0;
-
-		try {
-			BufferedReader arquivo = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
-
-			while (arquivo.readLine() != null) {
-				contador++;
-			}
-			arquivo.close();
-
-		} catch (IOException e) {
-			System.err.println("Arquivo não foi encontrado!Verifique o diretorio do arquivo!\n");
-		}
-
-		return contador;
-
-	}
-	
-	private int verificarNumero(String palavra) {
-		int numero;
-		try {
-			numero = Integer.parseInt(palavra);
-		} catch (NumberFormatException e) {
-			numero = 0;
-		}
-		return numero;
-	}
-	
+        };
+        return banco;
+    }
     //Classifica o nivel
-	private String classificaNivel(String senha) {
+    public String classificaNivel(String senha) {
 
         char[] caracteres = senha.toCharArray();
 
+        //System.out.println("classificaNivel "+ senha);
         boolean especial = false, numeral = false;
         int minusculoMaiusculo = 0;
 
         numeral = classificaNumeral(caracteres);
+        //System.out.println("num: "+numeral);
         minusculoMaiusculo = classificaMinusculoMaiusculo(caracteres);
+       // System.out.println("Mm: "+minusculoMaiusculo);
         especial = classificaEspecial(caracteres);
+       // System.out.println("esp: "+especial);
 
 
         if(senha.length()>8 && numeral==true && minusculoMaiusculo==2 && especial==true){
@@ -150,16 +65,17 @@ public class ClassificarSenha extends Arquivo {
             return "muito ruim";
         }
         else{
-            return "sem classificação";
+            return "sem classificaÃ§Ã£o";
         }
 
     }
     //valida se tem caractere Minusculo/Maiusculo
-    private int classificaMinusculoMaiusculo(char[] letras) {
+	public int classificaMinusculoMaiusculo(char[] letras) {
 		boolean minusculo = false,maiusculo = false;
 		int cont=0;
 
 		while((!minusculo   || !maiusculo )&&cont<letras.length) {
+           // System.out.println("NMn");
 			if(letras[cont] == Character.toUpperCase(letras[cont]) && !Character.isDigit(letras[cont])) {
 				minusculo = true;
 			}
@@ -183,11 +99,12 @@ public class ClassificarSenha extends Arquivo {
 	}
 
     //vai validar se tem caractere especial
-	private boolean classificaEspecial(char[] letras) {
+	public boolean classificaEspecial(char[] letras) {
 		boolean especial = false;
         int cont=0;
 		
 		while(!especial  && cont<letras.length) {
+           // System.out.println("especial: "+letras[cont]);
 
             if(!((letras[cont] >='a' && letras[cont] <= 'z') || (letras[cont] >='A' && letras[cont] <= 'Z') || (letras[cont]  >= '0' && letras[cont]  <= '9'))){
                 especial = true;
@@ -198,11 +115,12 @@ public class ClassificarSenha extends Arquivo {
 		return especial;
 	}
     //valida se tem numeral
-	private boolean classificaNumeral(char[] letras) {
+	public boolean classificaNumeral(char[] letras) {
 		boolean numeral = false; 
 		int cont = 0;
 		
 		while(!numeral && cont<letras.length) {
+			//		System.out.println("Numeral");
 			if(Character.isDigit(letras[cont])) {
                 numeral = true;
 
@@ -213,10 +131,9 @@ public class ClassificarSenha extends Arquivo {
 	}
 
     public void transcricaoClasses() {
-        transcricao(getBancoDeDados(), "password_classifier.csv");
+        transcricaoClassificacao(bancoDeDados, "password_classifier.csv");
 
     }
-
 
 
 }

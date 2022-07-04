@@ -1,75 +1,118 @@
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class FiltrarSenha extends Arquivo {
-	private String path;
+    private String[][] bancoDeDados;
     private int linhas;
 
-    public FiltrarSenha(String path,int linhas) {
+    public FiltrarSenha(String path) {
 
+        this.linhas = contarLinha(path);
+        this.bancoDeDados = filtrar(linhas, path);
+
+    }
+
+    public String[][] getBancoDeDados() {
+        return bancoDeDados;
+    }
+
+    public void setBancoDeDados(String[][] bancoDeDados) {
+        this.bancoDeDados = bancoDeDados;
+    }
+
+    public int getLinhas() {
+        return linhas;
+    }
+
+    public void setLinhas(int linhas) {
         this.linhas = linhas;
-        this.path = path;
     }
 
+    public String[][] filtrar(int quantidade, String path) {
 
-    public String getPath() {
-		return path;
-	}
+        String linha = null;
+        int indice = 0;
+        String[][] bancoDeDados = new String[quantidade][4];
+        String[] colunas;
 
+        try {
 
-	public void setPath(String path) {
-		this.path = path;
-	}
+            BufferedReader arquivo = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
 
+            colunas = (arquivo.readLine()).split(",");
 
-	public int getLinhas() {
-		return linhas;
-	}
+            bancoDeDados[indice][0] = colunas[1];
+            bancoDeDados[indice][1] = colunas[2];
+            bancoDeDados[indice][2] = colunas[3];
+            bancoDeDados[indice][3] = colunas[4];
+            indice++;
 
+            while ((linha = arquivo.readLine()) != null) {
+                try {
+                    String[] dadosFormatados = tratamentoDados(linha);
 
-	public void setLinhas(int linhas) {
-		this.linhas = linhas;
-	}
+                    bancoDeDados[indice][0] = dadosFormatados[0];
+                    bancoDeDados[indice][1] = Integer.toString(verificarNumero(dadosFormatados[1]));
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    bancoDeDados[indice][2] = formato.format(new SimpleDateFormat("yyyy-MM-dd").parse(dadosFormatados[2]));
 
+                    // para outro momento.replaceAll("^\"|\"$", "");
+                    indice++;
+                } catch (ParseException e) {
+                    System.err.println("Ocorreu um erro inesperado na conversao de data!\n");
+                }
+            }
 
-	public void filtrar(int quantidade, String path) {
-
-		String linha = null;
-		int indice = 0;
-		String colunas;
-
-		try {
-
-			BufferedReader arquivo = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
-			FileWriter arq = new FileWriter(path);
-			PrintWriter gravarArq = new PrintWriter(arq);
-			
-			colunas = arquivo.readLine();
-			gravarArq.println(colunas);
-			
-			while ((linha = arquivo.readLine()) != null) {
-				String classe = linha.substring(linha.lastIndexOf(",")+1);
-
-				if(classe.equals("muito boa")||classe.equals("muito boa")) {
-					gravarArq.println(indice+linha.substring(linha.indexOf(",")));
-					indice++;
-				}
-			}
-			arq.close();
-			arquivo.close();
-		} catch (IOException e) {
-			System.err.println("Arquivo não foi encontrado!Verifique o diretorio do arquivo!\n");
-		}
-
-	}
-	public void transcricaoClasses() {
-		filtrar(getLinhas(),getPath());
+            arquivo.close();
+        } catch (IOException e) {
+            System.err.println("Arquivo nao foi encontrado!Verifique o diretorio do arquivo!\n");
+        }
+        return bancoDeDados;
 
     }
 
+    public static int contarLinha(String path) {
+        int contador = 0;
 
-}
+        try {
+            BufferedReader arquivo = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+
+            while (arquivo.readLine() != null) {
+                contador++;
+            }
+            arquivo.close();
+
+        } catch (IOException e) {
+            System.err.println("Arquivo nao foi encontrado!Verifique o diretorio do arquivo!\n");
+        }
+
+        return contador;
+
+    }
+    private String[] tratamentoDadosFiltro(String linha) {
+        String palavra = null;
+        String[] dadosFormatados = new String[4];
+        int indice = dadosFormatados.length - 1;
+
+        while (indice > 0) {
+
+            palavra = linha.substring(linha.lastIndexOf(","));
+            dadosFormatados[indice] = palavra.substring(1);
+            linha = linha.substring(0, linha.lastIndexOf(","));
+            indice--;
+        }
+        dadosFormatados[indice] = linha.substring(linha.indexOf(",") + 1);
+
+        return dadosFormatados;
+
+    }
+    public void transcricaoClasses() {
+        transcricaoClassificacao(bancoDeDados, "passwords_classifier.csv");
+
+    }
+
+}*/
