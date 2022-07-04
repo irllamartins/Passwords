@@ -5,18 +5,16 @@ public class Password{
 	private int length;
 	private Date data;
 	private String dataFormatada;
-	private String classificacao;
-	private String[] colunas;
+	private String colunas;
 
-	public Password(String password,int length, Date data, String dataFormatada,String classificacao) {
+	public Password(String password,int length, Date data, String dataFormatada) {
 		this.password = password;
 		this.length = length;
 		this.data = data;
 		this.dataFormatada = dataFormatada;
-		this.classificacao = classificacao;
 	}
 	
-	public Password(String[] colunas) {
+	public Password(String colunas) {
 		this.setColunas(colunas);
 	}
 	
@@ -38,10 +36,10 @@ public class Password{
 	public void setData(Date data) {
 		this.data = data;
 	}
-	public String[] getColunas() {
+	public String getColunas() {
 		return colunas;
 	}
-	public void setColunas(String[] colunas) {
+	public void setColunas(String colunas) {
 		this.colunas = colunas;
 	}
 	
@@ -53,20 +51,14 @@ public class Password{
 		this.dataFormatada = dataFormatada;
 	}
 
-	public String getClassificacao() {
-		return classificacao;
-	}
 
-	public void setClassificacao(String classificacao) {
-		this.classificacao = classificacao;
-	}
 
 	@Override
 	public String toString() {
-		return "," + password + "," + length + "," + dataFormatada+","+classificacao;
+		return "," + password + "," + length + "," + dataFormatada;
 	}
 	public String toStringColunas() {
-		return "," + colunas[0] + "," + colunas[1] + "," + colunas[2]+","+colunas[3];
+		return colunas;
 	}
 
 	

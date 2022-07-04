@@ -3,66 +3,67 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class QuickSort extends Arquivo {
-	private String[][] casoMedio;
-	private String[][] piorCaso;
-	private String[][] melhorCaso;
+	private Password[] casoMedio;
+	private Password[] piorCaso;
+	private Password[] melhorCaso;
 
-	public QuickSort(String[][] bancoDeDados) {
+	public QuickSort(Password[] bancoDeDados) {
 		this.casoMedio = bancoDeDados;
 
 	}
 
-	public String[][] getCasoMedio() {
+	public Password[] getCasoMedio() {
 		return casoMedio;
 	}
 
-	public void setCasoMedio(String[][] casoMedio) {
+	public void setCasoMedio(Password[] casoMedio) {
 		this.casoMedio = casoMedio;
-
 	}
 
-	public String[][] getPiorCaso() {
+	public Password[] getPiorCaso() {
 		return piorCaso;
 	}
 
-	public void setPiorCaso(String[][] piorCaso) {
+	public void setPiorCaso(Password[] piorCaso) {
 		this.piorCaso = piorCaso;
 	}
 
-	public String[][] getMelhorCaso() {
+	public Password[] getMelhorCaso() {
 		return melhorCaso;
 	}
 
-	public void setMelhorCaso(String[][] melhorCaso) {
+	public void setMelhorCaso(Password[] melhorCaso) {
 		this.melhorCaso = melhorCaso;
 	}
 
-	public String[][] startQuickSortLength(String[][] bancoDeDados, int num) {
-		String[][] banco = bancoDeDados.clone();
+
+
+	public Password[] startQuickSortLength(Password[] bancoDeDados, int num) {
+		Password[] banco = bancoDeDados.clone();
 		long tempoInicial = System.currentTimeMillis();
 		quickSortLenght(banco, 1, num);
-		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
+		System.out.println("O metodo executou em " + (System.currentTimeMillis() - tempoInicial) + " ms\n");
 		return banco;
 	}
 
-	public String[][] startQuickSortMonth(String[][] bancoDeDados, int num) {
-		String[][] banco = bancoDeDados.clone();
+	public Password[] startQuickSortMonth(Password[] bancoDeDados, int num) {
+		Password[] banco = bancoDeDados.clone();
 		long tempoInicial = System.currentTimeMillis();
-	//	quickSortMonth(banco, 1, num);
-		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
+		quickSortMonth(banco, 1, num);
+		System.out.println("O metodo executou em " + (System.currentTimeMillis() - tempoInicial) + " ms\n");
 		return banco;
 	}
 
-	public String[][] startQuickSortDate(String[][] bancoDeDados, int num) {
-		String[][] banco = bancoDeDados.clone();
+	public Password[] startQuickSortDate(Password[] bancoDeDados, int num) {
+		Password[] banco = bancoDeDados.clone();
 		long tempoInicial = System.currentTimeMillis();
 		quickSortDate(banco, 1, num);
-		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
-
+		System.out.println("O metodo executou em " + (System.currentTimeMillis() - tempoInicial) + " ms\n");
 		return banco;
 	}
-
-	public void quickSortLenght(String[][] vetor, int inicio, int fim) {
+	
+	//ordenação do quickSort pelo tamahno
+	public void quickSortLenght(Password[] vetor, int inicio, int fim) {
 		if (inicio < fim) {
 			int meio = particaoLenght(vetor, inicio, fim);
 			quickSortLenght(vetor, inicio, meio - 1);
@@ -70,12 +71,12 @@ public class QuickSort extends Arquivo {
 		}
 	}
 
-	public int particaoLenght(String[][] vetor, int inicio, int fim) {
-		int pivo = verificarNumero(vetor[fim][1]);
+	public int particaoLenght(Password[] vetor, int inicio, int fim) {
+		int pivo = vetor[fim].getLength();
 		int i = inicio - 1;
 		// System.out.println("!"+i);
 		for (int j = inicio; j <= fim - 1; j++) {
-			if (verificarNumero(vetor[j][1]) < pivo) {
+			if (vetor[j].getLength() <= pivo) {
 				i = i + 1;
 				troca(vetor, i, j);
 			}
@@ -83,8 +84,10 @@ public class QuickSort extends Arquivo {
 		troca(vetor, i + 1, fim);
 		return i + 1;
 	}
-/*
-	public void quickSortMonth(String[][] vetor, int inicio, int fim) {
+	
+	//ordenação do quickSort pelo mes/ano 
+	public void quickSortMonth(Password[] vetor, int inicio, int fim) {
+
 		if (inicio < fim) {
 			int meio = particaoMonth(vetor, inicio, fim);
 			quickSortMonth(vetor, inicio, meio - 1);
@@ -92,25 +95,35 @@ public class QuickSort extends Arquivo {
 		}
 	}
 
-	public int particaoMonth(String[][] vetor, int inicio, int fim) {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	public int particaoMonth(Password[] vetor, int inicio, int fim) {
 
-		Date pivo = comparaDataMes((vetor[fim][2]));
+		SimpleDateFormat formato = new SimpleDateFormat("MM/yyyy");
+
 		int i = inicio - 1;
+		Date pivo;
 
-		for (int j = inicio; j <= fim - 1; j++) {
+		try {
+			pivo = formato.parse(formato.format(vetor[fim].getData()));
 
-			if (comparaDataMes((vetor[j][2])).compareTo(pivo) < 0) {
-				i = i + 1;
-				troca(vetor, i, j);
+			for (int j = inicio; j <= fim - 1; j++) {
+
+				if (formato.parse(formato.format(vetor[j].getData())).compareTo(pivo) <= 0) {
+					i = i + 1;
+					troca(vetor, i, j);
+				}
 			}
+
+			troca(vetor, i + 1, fim);
+
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
 
-		troca(vetor, i + 1, fim);
 		return i + 1;
-	}*/
+	}
+	//ordenação do quickSort pela data
+	public void quickSortDate(Password[] vetor, int inicio, int fim) {
 
-	public void quickSortDate(String[][] vetor, int inicio, int fim) {
 		if (inicio < fim) {
 			int meio = particaoDate(vetor, inicio, fim);
 			quickSortDate(vetor, inicio, meio - 1);
@@ -118,37 +131,33 @@ public class QuickSort extends Arquivo {
 		}
 	}
 
-	public int particaoDate(String[][] vetor, int inicio, int fim) {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		try {
-			Date pivo = formatter.parse(vetor[fim][2]);
-			int i = inicio - 1;
+	public int particaoDate(Password[] vetor, int inicio, int fim) {
+
+		int i = inicio - 1;
+
+			Date pivo = vetor[fim].getData();
+
 			// System.out.println("-------------------------------");
 			for (int j = inicio; j <= fim - 1; j++) {
 
-				if (formatter.parse(vetor[j][2]).compareTo(pivo) < 0) {
-					// System.out.println("->"+formatter.parse(vetor[j][2])+"!"+pivo);
+				if (vetor[j].getData().compareTo(pivo) <= 0) {
 					i = i + 1;
 					troca(vetor, i, j);
 				}
 			}
 			troca(vetor, i + 1, fim);
-			return i + 1;
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		// System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		return 0;
-	}
 
-	public void gerarCasos(String[][] bancoOrdenado) {
+		return i + 1;
+	}
+	
+	//gera os casos crescente e decrescentemente
+	public void gerarCasos(Password[] bancoOrdenado) {
 		setMelhorCaso(bancoOrdenado);
-		setPiorCaso(construirPiorCaso(melhorCaso));
+		setPiorCaso(construirCasoDecrescente(melhorCaso.clone()));
 
 	}
-
+	//chama a ordenação que vai ser classificada pelo tamanho,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
 	public void transcricaoLenghtCaso() {
-
 		System.out.println("#------------QuickSort-Lenght------------#");
 		transcricao(casoMedio, "passwords_length_quickSort_medioCaso.csv");
 		gerarCasos(startQuickSortLength(casoMedio, casoMedio.length - 1));
@@ -156,9 +165,9 @@ public class QuickSort extends Arquivo {
 		startQuickSortLength(piorCaso, piorCaso.length - 1);
 		transcricao(melhorCaso, "passwords_length_quickSort_melhorCaso.csv");
 		startQuickSortLength(melhorCaso, melhorCaso.length - 1);
-
 	}
 
+	//chama a ordenação que vai ser classificada pelo mes/ano,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
 	public void transcricaoMonthCaso() {
 		System.out.println("#------------QuickSort-Month------------#");
 		transcricao(casoMedio, "passwords_data_month_quickSort_medioCaso.csv");
@@ -169,6 +178,7 @@ public class QuickSort extends Arquivo {
 		startQuickSortMonth(melhorCaso, melhorCaso.length - 1);
 	}
 
+	//chama a ordenação que vai ser classificada pela data,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
 	public void transcricaoDataCaso() {
 		System.out.println("#------------QuickSort-Date------------#");
 
@@ -179,4 +189,5 @@ public class QuickSort extends Arquivo {
 		transcricao(melhorCaso, "passwords_data_quickSort_melhorCaso.csv");
 		startQuickSortDate(melhorCaso, melhorCaso.length - 1);
 	}
+
 }
