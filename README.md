@@ -2,7 +2,7 @@
 Projeto desenvolvido na disciplina de Estrutura de Dados
 Ele consite de um arquivo csv e gerara outros arquivos atraves de estruturas de ordenações
 
-> <b> Utilize a branch master</b>
+> <b> Observação:</b> Utilize a branch master
 
 # Instruções de utilização
 1. Baixe os arquivos
