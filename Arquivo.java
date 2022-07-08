@@ -66,5 +66,25 @@ public abstract class Arquivo {
         return dadosFormatados;
 
     }
+  //gera a lista para ordenar sem coluna
+  	public Password[] gerarListaOrdenar(Password[] listaInicial,int inicio) {
+  		Password[] listaFinal = new Password[listaInicial.length-inicio];
+  		
+  		for(int i=0;i<listaFinal.length;i++) {
+  			listaFinal[i] = listaInicial[i+inicio];
+  		}	
+  		
+  		return listaFinal;
+  	}
+  	//gera lista final com coluna
+  	public Password[] gerarListaFinal(Password[] listaComColuna, Password[] lista) {
+  		Password[] listaFinal = new Password[listaComColuna.length];
+  		
+  		listaFinal[0] = listaComColuna[0];
+  		for(int i=1;i<listaFinal.length;i++) {
+  			listaFinal[i] = lista[i-1];
+  		}	
+  		return listaFinal;
+  	}
 
 }

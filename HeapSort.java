@@ -172,28 +172,6 @@ public class HeapSort extends Arquivo {
 	    }
 	}
 	
-	//gera a lista ordenada
-	public Password[] gerarListaOrdenar(Password[] listaInicial,int inicio) {
-		Password[] listaFinal = new Password[listaInicial.length-inicio];
-		
-		for(int i=0;i<listaFinal.length;i++) {
-			listaFinal[i] = listaInicial[i+inicio];
-		}	
-		
-		return listaFinal;
-	}
-	
-	//gera lista final
-	public Password[] gerarListaFinal(Password[] listaComColuna, Password[] listaHeap) {
-		Password[] listaFinal = new Password[listaComColuna.length];
-		
-		listaFinal[0] = listaComColuna[0];
-		for(int i=1;i<listaFinal.length;i++) {
-			listaFinal[i] = listaHeap[i-1];
-		}	
-		return listaFinal;
-	}
-	
 	//gera os casos crescente e decrescentemente
 	public void gerarCasos(Password[] bancoOrdenado) {
 			setMelhorCaso(bancoOrdenado);
