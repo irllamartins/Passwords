@@ -15,10 +15,10 @@ Ele consite de um arquivo csv e gerara outros arquivos atraves de estruturas de 
 
 #Alternativa 3
 1.Caso nenhuma das alternativas anteriores funcionar, use essa
-2. Clik no mause o botão direito e clik em obter informação/propri
-Abra o arquivo main.java
-. procure path="passwords.java"
-
+2. Clik no mause o botão direito e clik em obter informação/propriedade na pasta Passwords-master
+3. Abra o arquivo main.java
+4. Copie o diretorio Onde/Local e cole assim na path = "(colar)/passwords.csv" e pathAux = "(colar)/classifier_passwords.csv 
+5. Execute oarquivo
 
 # Ordenações
 - [x] SelectionSort
@@ -26,3 +26,4 @@ Abra o arquivo main.java
 - [x] QuickSort
 - [x] QuickSort mediana de 3
 - [x] HeapSort
+- [x] CauntingSort
