@@ -4,14 +4,21 @@ Ele consite de um arquivo csv e gerara outros arquivos atraves de estruturas de 
 
 > <b>Link do acesso ao documento:</b> https://docs.google.com/document/d/1Mfeco-adOz58s2IRGwqho9Dfbg5sFc7Ss-IKZ8QFTuA/edit?usp=sharing
 # Instruções de utilização
+1. Baixe os arquivos na area de trabalho
+2. Coloque o arquivo csv passwords.csv dentro da pasta Passwords-master
+3. Entre na pasta Passwords-master e encontre o main.java e execute
+
+#Alternativa 2
 1. Baixe os arquivos
-2. Entre nos arquivos até encontrar o Main
-3. Click em cima do arquivo o botão direito, procure por propriedade e encotre o local do arquivo
-4. copie o local
-5. escolha sua IDE e abre ele
-6. Com a IDE aberto,você vai abrir a pasta gerada no donwload 
-7. coloque o caminho dentro das " " na variavel path e cole o caminho
-8. coloque run na pagina main
+2. Coloque o arquivo csv passwords.csv dentro da pasta Passwords-master
+3. Entre na pasta Passwords-master usando o comando cd (mais o diretorio) e execute
+
+#Alternativa 3
+1.Caso nenhuma das alternativas anteriores funcionar, use essa
+2. Clik no mause o botão direito e clik em obter informação/propri
+Abra o arquivo main.java
+. procure path="passwords.java"
+
 
 # Ordenações
 - [x] SelectionSort
