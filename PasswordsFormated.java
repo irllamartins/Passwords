@@ -53,8 +53,7 @@ public class PasswordsFormated extends Arquivo{
 					SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 					
-					bancoDeDados[indice] = new Password(dadosFormatados[0],verificarNumero(dadosFormatados[1]),formato.parse(formato.format(formatter.parse(dadosFormatados[2]))),formato.format(formatter.parse(dadosFormatados[2])));
-					// para outro momento.replaceAll("^\"|\"$", "");
+					bancoDeDados[indice] = new Password(dadosFormatados[0],verificarNumero(dadosFormatados[1]),formato.parse(formato.format(formatter.parse(dadosFormatados[2]))),formato.format(formatter.parse(dadosFormatados[2])),dadosFormatados[3]);
 					indice++;
 				} catch (ParseException e) {
 					System.err.println("Ocorreu um erro inesperado na converçaõ de data!\n");
@@ -100,7 +99,7 @@ public class PasswordsFormated extends Arquivo{
 	}
 	public static String[] tratamentoDados(String linha) {
 		String palavra = null;
-		String[] dadosFormatados = new String[3];
+		String[] dadosFormatados = new String[4];
 		int indice = dadosFormatados.length - 1;
 
 		while (indice > 0) {

@@ -52,32 +52,27 @@ public class CountingSort extends Arquivo {
 			
 		}
 		Password[] count_arr = new Password[max+1];
-		System.out.println(banco.length+"!"+max);
-		//2
+		
 		for (int i = 0; i <=max; ++i) {
 			 count_arr[i] = new Password(null); 
 			 count_arr[i].setLength(0); 
-			// System.out.println(count_arr[i].getLength()+" "+i);
 		}
-		//3
+		
 		 for (int i = 0; i < banco.length; i++) {
 			
 		     count_arr[banco[i].getLength()].setLength(count_arr[banco[i].getLength()].getLength()+1);
 		 }
-		 //4
 		 
 		
 		 for (int i = 1; i <= max; i++) {
 		      count_arr[i].setLength(  count_arr[i].getLength()+count_arr[i-1].getLength());
 		  }
 		
-		
-		 //5
 		  for (int i =  banco.length - 1; i >= 0; i--) {
 			   arr1[count_arr[banco[i].getLength()].getLength() - 1] = banco[i];
 			   count_arr[banco[i].getLength()].setLength( count_arr[banco[i].getLength()].getLength()-1);
 		  }
-		  //6
+		
 		  for (int i = 0; i <  banco.length; i++) {
 		        banco[i] = arr1[i];
 		      }  
@@ -86,7 +81,7 @@ public class CountingSort extends Arquivo {
 		banco = gerarListaFinal(bancoDeDados,banco);
 		
 		return banco;
-		//return aux1;
+		
 	}
 	
 	

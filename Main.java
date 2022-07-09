@@ -1,9 +1,17 @@
+import java.util.Scanner;
+
 public class Main {
 	
 	public static void main(String[] args) {
-		String path = "../EstruturaDeDados3/src/passwords.csv";
-			
-		PasswordsFormated arquivo = new PasswordsFormated(path);
+		Scanner input = new Scanner(System.in);
+		
+		//String path = input.next();
+		String path = "../EstruturaDeDados3/src/passwords2.csv";
+		String pathAux = "password_classifier.csv";
+		
+		ClassificarSenha classificarSenha = new ClassificarSenha(path);
+		PasswordsFormated arquivo = new PasswordsFormated(pathAux);
+		FiltrarSenha filtrarSenha = new FiltrarSenha(pathAux);
 		
 		InsertionSort insertionSort = new InsertionSort(arquivo.getBancoDeDados());
 		QuickSort quickSort = new QuickSort(arquivo.getBancoDeDados());
@@ -11,9 +19,11 @@ public class Main {
 		MergeSort mergeSort = new MergeSort(arquivo.getBancoDeDados());
 		HeapSort heapSort = new HeapSort(arquivo.getBancoDeDados());
 		SelectionSort selectionSort = new SelectionSort(arquivo.getBancoDeDados());
-	
+		CountingSort countingSort = new CountingSort(arquivo.getBancoDeDados());
+		
+		classificarSenha.transcricao();
 		arquivo.transcricaoFomatado();
-
+		filtrarSenha.transcricaoClasses();
 		
 		insertionSort.transcricaoLenghtCaso();
 		insertionSort.transcricaoMonthCaso();
@@ -37,7 +47,10 @@ public class Main {
 		
 		//quickSortMedian.transcricaoLenghtCaso();
 		quickSortMedian.transcricaoMonthCaso();
-		quickSortMedian.transcricaoDataCaso();		
+		quickSortMedian.transcricaoDataCaso();
+		
+		countingSort.transcricaoLenghtCaso();
+		
 		
 		
 	}

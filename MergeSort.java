@@ -42,6 +42,7 @@ public class MergeSort extends Arquivo{
 		long tempoInicial = System.currentTimeMillis();
 		mergeSortLength(banco, 1, num);
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
+		
 		return banco;
 	}
 	
@@ -51,6 +52,7 @@ public class MergeSort extends Arquivo{
 		long tempoInicial = System.currentTimeMillis();
 		mergeSortMonth(banco, 1, num);
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
+		
 		return banco;
 	}
 	
@@ -58,8 +60,9 @@ public class MergeSort extends Arquivo{
 		Password[] banco = bancoDeDados.clone();
 		
 		long tempoInicial = System.currentTimeMillis();
-		//mergeSortDate(banco, 1, num);
+		mergeSortDate(banco, 1, num);
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
+		
 		return banco;
 	}
 	

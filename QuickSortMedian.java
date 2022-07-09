@@ -39,26 +39,32 @@ public class QuickSortMedian extends Arquivo {
 
 	public Password[] startQuickSortMedianLength(Password[] bancoDeDados, int num) {
 		Password[] banco = bancoDeDados.clone();
+		
 		long tempoInicial = System.currentTimeMillis();
 		quickSortMedianLength(banco, 1, num);
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
+		
 		return banco;
 	
 	}
 	
 	public Password[] startQuickSortMedianMonth(Password[] bancoDeDados, int num) {
 		Password[] banco = bancoDeDados.clone();
+		
 		long tempoInicial = System.currentTimeMillis();
 		quickSortMedianMonth(banco, 1, num);
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
+
 		return banco;
 	}
 	
 	public Password[] startQuickSortMedianDate(Password[] bancoDeDados, int num) {
 		Password[] banco = bancoDeDados.clone();
+		
 		long tempoInicial = System.currentTimeMillis();
 		quickSortMedianDate(banco, 1, num);
 		System.out.println("O metodo executou em " +( System.currentTimeMillis()-tempoInicial)+" ms\n");
+		
 		return banco;
 	}	
 	
@@ -80,43 +86,41 @@ public class QuickSortMedian extends Arquivo {
 
 		if (a < b) {
 			if (b < c) {
-				// a < b && b < c
 				medianaIndice = meio;
 			} else {
 				if (a < c) {
-					// a < c && c <= b
 					medianaIndice = fim;
 				} else {
-					// c <= a && a < b
 					medianaIndice = inicio;
 				}
 			}
 		} else {
 			if (c < b) {
-				// c < b && b <= a
 				medianaIndice = meio;
 			} else {
 				if (c < a) {
-					// b <= c && c < a
 					medianaIndice = fim;
 				} else {
-					// b <= a && a <= c
 					medianaIndice = inicio;
 				}
 			}
 		}
 		troca(vetor,medianaIndice, fim);
 		
-		int pivo = vetor[fim].getLength();
 		int i = inicio - 1;
-		
+
+		int pivo = vetor[fim].getLength();
+
 		for (int j = inicio; j <= fim - 1; j++) {
-			if (vetor[j].getLength() <= pivo) {
+
+			if (vetor[j].getLength() <=pivo) {
 				i = i + 1;
 				troca(vetor, i, j);
 			}
 		}
+
 		troca(vetor, i + 1, fim);
+
 		return i + 1;
 	}
 	
@@ -138,27 +142,21 @@ public class QuickSortMedian extends Arquivo {
 
 		if (a < b) {
 			if (b < c) {
-				// a < b && b < c
 				medianaIndice = meio;
 			} else {
 				if (a < c) {
-					// a < c && c <= b
 					medianaIndice = fim;
 				} else {
-					// c <= a && a < b
 					medianaIndice = inicio;
 				}
 			}
 		} else {
 			if (c < b) {
-				// c < b && b <= a
 				medianaIndice = meio;
 			} else {
 				if (c < a) {
-					// b <= c && c < a
 					medianaIndice = fim;
 				} else {
-					// b <= a && a <= c
 					medianaIndice = inicio;
 				}
 			}
@@ -205,27 +203,21 @@ public class QuickSortMedian extends Arquivo {
 
 		if (a < b) {
 			if (b < c) {
-				// a < b && b < c
 				medianaIndice = meio;
 			} else {
 				if (a < c) {
-					// a < c && c <= b
 					medianaIndice = fim;
 				} else {
-					// c <= a && a < b
 					medianaIndice = inicio;
 				}
 			}
 		} else {
 			if (c < b) {
-				// c < b && b <= a
 				medianaIndice = meio;
 			} else {
 				if (c < a) {
-					// b <= c && c < a
 					medianaIndice = fim;
 				} else {
-					// b <= a && a <= c
 					medianaIndice = inicio;
 				}
 			}
@@ -256,7 +248,8 @@ public class QuickSortMedian extends Arquivo {
 	public void transcricaoLenghtCaso() {
 	System.out.println("#------------QuickSortMedian-Lenght------------#");
 		transcricao(casoMedio, "passwords_length_quickSortMedian_medioCaso.csv");
-		startQuickSortMedianLength(casoMedio, casoMedio.length - 1);
+		
+		startQuickSortMedianLength(casoMedio, casoMedio.length - 1);System.out.println("oi");
 		transcricao(piorCaso, "passwords_length_quickSortMedian_piorCaso.csv");
 		startQuickSortMedianLength(piorCaso, piorCaso.length - 1);
 		transcricao(melhorCaso, "passwords_length_quickSortMedian_melhorCaso.csv");

@@ -7,11 +7,9 @@ import java.io.PrintWriter;
 
 public class FiltrarSenha extends Arquivo {
 	private String path;
-    private int linhas;
 
-    public FiltrarSenha(String path,int linhas) {
+    public FiltrarSenha(String path) {
 
-        this.linhas = linhas;
         this.path = path;
     }
 
@@ -26,26 +24,15 @@ public class FiltrarSenha extends Arquivo {
 	}
 
 
-	public int getLinhas() {
-		return linhas;
-	}
-
-
-	public void setLinhas(int linhas) {
-		this.linhas = linhas;
-	}
-
-
-	public void filtrar(int quantidade, String path) {
+	public void filtrar(String path) {
 
 		String linha = null;
-		int indice = 0;
 		String colunas;
 
 		try {
-
+			int indice = 0;
 			BufferedReader arquivo = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
-			FileWriter arq = new FileWriter(path);
+			FileWriter arq = new FileWriter("passwords_classifier.csv");
 			PrintWriter gravarArq = new PrintWriter(arq);
 			
 			colunas = arquivo.readLine();
@@ -55,10 +42,12 @@ public class FiltrarSenha extends Arquivo {
 				String classe = linha.substring(linha.lastIndexOf(",")+1);
 
 				if(classe.equals("muito boa")||classe.equals("muito boa")) {
-					gravarArq.println(indice+linha.substring(linha.indexOf(",")));
+					linha = linha.substring(linha.indexOf(","));
+					gravarArq.println(indice+linha);
 					indice++;
 				}
 			}
+			System.out.println("O Arquivo passwords_classifier.csv gerado com sucesso!");
 			arq.close();
 			arquivo.close();
 		} catch (IOException e) {
@@ -67,7 +56,7 @@ public class FiltrarSenha extends Arquivo {
 
 	}
 	public void transcricaoClasses() {
-		filtrar(getLinhas(),getPath());
+		filtrar(getPath());
 
     }
 

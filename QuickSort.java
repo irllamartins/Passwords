@@ -40,25 +40,32 @@ public class QuickSort extends Arquivo {
 
 	public Password[] startQuickSortLength(Password[] bancoDeDados, int num) {
 		Password[] banco = bancoDeDados.clone();
+		
 		long tempoInicial = System.currentTimeMillis();
-		quickSortLenght(banco, 1, num);
+		quickSortLenght(banco,1, num);
+		
 		System.out.println("O metodo executou em " + (System.currentTimeMillis() - tempoInicial) + " ms\n");
+		
 		return banco;
 	}
 
 	public Password[] startQuickSortMonth(Password[] bancoDeDados, int num) {
 		Password[] banco = bancoDeDados.clone();
+		
 		long tempoInicial = System.currentTimeMillis();
 		quickSortMonth(banco, 1, num);
 		System.out.println("O metodo executou em " + (System.currentTimeMillis() - tempoInicial) + " ms\n");
+		
 		return banco;
 	}
 
 	public Password[] startQuickSortDate(Password[] bancoDeDados, int num) {
 		Password[] banco = bancoDeDados.clone();
+		
 		long tempoInicial = System.currentTimeMillis();
 		quickSortDate(banco, 1, num);
-		System.out.println("O metodo executou em " + (System.currentTimeMillis() - tempoInicial) + " ms\n");
+		System.out.println("O metodo executou em " + (System.currentTimeMillis() - tempoInicial) + " ms\n");	
+
 		return banco;
 	}
 	
@@ -69,12 +76,12 @@ public class QuickSort extends Arquivo {
 			quickSortLenght(vetor, inicio, meio - 1);
 			quickSortLenght(vetor, inicio + 1, fim);
 		}
+		
 	}
 
 	public int particaoLenght(Password[] vetor, int inicio, int fim) {
 		int pivo = vetor[fim].getLength();
 		int i = inicio - 1;
-		// System.out.println("!"+i);
 		for (int j = inicio; j <= fim - 1; j++) {
 			if (vetor[j].getLength() <= pivo) {
 				i = i + 1;
@@ -137,7 +144,6 @@ public class QuickSort extends Arquivo {
 
 			Date pivo = vetor[fim].getData();
 
-			// System.out.println("-------------------------------");
 			for (int j = inicio; j <= fim - 1; j++) {
 
 				if (vetor[j].getData().compareTo(pivo) <= 0) {
@@ -153,6 +159,9 @@ public class QuickSort extends Arquivo {
 	//gera os casos crescente e decrescentemente
 	public void gerarCasos(Password[] bancoOrdenado) {
 		setMelhorCaso(bancoOrdenado);
+		
+		
+		
 		setPiorCaso(construirCasoDecrescente(melhorCaso.clone()));
 
 	}

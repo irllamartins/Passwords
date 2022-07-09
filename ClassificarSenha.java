@@ -1,79 +1,46 @@
-/*import java.io.BufferedReader;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.PrintWriter;
 
 
 public class ClassificarSenha extends Arquivo {
-	
-    private Password [] bancoDeDados;
-    private int linhas;
-
+	private String path;
     public ClassificarSenha(String path) {
-    	
-    	this.linhas = contarLinha(path);
-        this.bancoDeDados = classificacao(linhas,path);
+    	this.path = path;
     }
 
-	public Password[] getBancoDeDados() {
-		return bancoDeDados;
-	}
-
-	public void setBancoDeDados(Password[] bancoDeDados) {
-		this.bancoDeDados = bancoDeDados;
-	}
-
-	public int getLinhas() {
-		return linhas;
-	}
-
-	public void setLinhas(int linhas) {
-		this.linhas = linhas;
-	}
-
-
-
-
-	public Password[] classificacao(int quantidade, String path) {
+	private void classificacao(String path) {
 	
 			String linha = null;
-			int indice = 0;
-			Password[] bancoDeDados = new Password[quantidade];
+			int indice=0;
 			String colunas;
 	
 			try {
-	
 				BufferedReader arquivo = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
-	
-				colunas = arquivo.readLine();
-				colunas = colunas+",class";
-				bancoDeDados[0] = new Password(colunas);
+				FileWriter arq = new FileWriter("password_classifier.csv");
 				
-				System.out.println(bancoDeDados[0].toStringColunas());
-				indice++;
+				PrintWriter gravarArq = new PrintWriter(arq);
+				colunas = arquivo.readLine();
+				gravarArq.println(colunas+",class");
 	
 				while ((linha = arquivo.readLine()) != null) {
 					
-					try {
-						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
-						String[] dadosFormatados = tratamentoDados(linha);
-						
-						bancoDeDados[indice] = new Password(dadosFormatados[0],verificarNumero(dadosFormatados[1]),formatter.parse(dadosFormatados[2]),dadosFormatados[2],classificaNivel(dadosFormatados[0].replaceAll("^\"|\"$", "")));
-		
-						indice++;
-					}catch (ParseException e) {
-						System.err.println("Ocorreu um erro inesperado na converçaõ de data!\n");
-					}
+					String[] arrayVariaveis = tratamentoDados(linha);
+					
+					gravarArq.println(indice+","+arrayVariaveis[0]+","+arrayVariaveis[1]+","+arrayVariaveis[2]+","+classificaNivel(arrayVariaveis[0]));
+					indice++;
 				}
-				
+					
+					System.out.println("O Arquivo password_classifier.csv gerado com sucesso!");
+
+				arq.close();
 				arquivo.close();
 			} catch (IOException e) {
-				System.err.println("Arquivo não foi encontrado!Verifique o diretorio do arquivo!\n");
+				System.err.println("Arquivo n�o foi encontrado!Verifique o diretorio do arquivo!\n");
 			}
-			return bancoDeDados;
 	
 		}
 	 
@@ -94,35 +61,6 @@ public class ClassificarSenha extends Arquivo {
 
 		return dadosFormatados;
 
-	}
-	
-	private int contarLinha(String path) {
-		int contador = 0;
-
-		try {
-			BufferedReader arquivo = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
-
-			while (arquivo.readLine() != null) {
-				contador++;
-			}
-			arquivo.close();
-
-		} catch (IOException e) {
-			System.err.println("Arquivo não foi encontrado!Verifique o diretorio do arquivo!\n");
-		}
-
-		return contador;
-
-	}
-	
-	private int verificarNumero(String palavra) {
-		int numero;
-		try {
-			numero = Integer.parseInt(palavra);
-		} catch (NumberFormatException e) {
-			numero = 0;
-		}
-		return numero;
 	}
 	
     //Classifica o nivel
@@ -154,7 +92,7 @@ public class ClassificarSenha extends Arquivo {
             return "muito ruim";
         }
         else{
-            return "sem classificação";
+            return "sem classifica��o";
         }
 
     }
@@ -215,12 +153,9 @@ public class ClassificarSenha extends Arquivo {
 		}
 		return numeral;
 	}
+	public void transcricao() {
+		classificacao(path);
+	};
+	
 
-    public void transcricaoClasses() {
-    	transcricao(getBancoDeDados(), "password_classifier.csv");
-
-    }
-
-
-
-}*/
+}
