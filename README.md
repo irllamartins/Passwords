@@ -8,12 +8,12 @@ Ele consite de um arquivo csv e gerara outros arquivos atraves de estruturas de 
 2. Coloque o arquivo csv passwords.csv dentro da pasta Passwords-master
 3. Entre na pasta Passwords-master e encontre o main.java e execute
 
-#Alternativa 2
+# Alternativa 2
 1. Baixe os arquivos
 2. Coloque o arquivo csv passwords.csv dentro da pasta Passwords-master
 3. Entre na pasta Passwords-master usando o comando cd (mais o diretorio) e execute
 
-#Alternativa 3
+# Alternativa 3
 1.Caso nenhuma das alternativas anteriores funcionar, use essa
 2. Clik no mause o botão direito e clik em obter informação/propriedade na pasta Passwords-master
 3. Abra o arquivo main.java
@@ -26,4 +26,4 @@ Ele consite de um arquivo csv e gerara outros arquivos atraves de estruturas de 
 - [x] QuickSort
 - [x] QuickSort mediana de 3
 - [x] HeapSort
-- [x] CauntingSort
+- [x] CountingSort
