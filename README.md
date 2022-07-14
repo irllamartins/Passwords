@@ -14,7 +14,7 @@ Ele consite de um arquivo csv e gerara outros arquivos atraves de estruturas de 
 3. Entre na pasta Passwords-master usando o comando cd (mais o diretorio) e execute
 
 # Alternativa 3
-1.Caso nenhuma das alternativas anteriores funcionar, use essa
+1. Caso nenhuma das alternativas anteriores funcionar, use essa
 2. Clik no mause o botão direito e clik em obter informação/propriedade na pasta Passwords-master
 3. Abra o arquivo main.java
 4. Copie o diretorio Onde/Local e cole assim na path = "(colar)/passwords.csv" e pathAux = "(colar)/classifier_passwords.csv 
