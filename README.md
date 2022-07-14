@@ -18,7 +18,7 @@ Ele consite de um arquivo csv e gerara outros arquivos atraves de estruturas de 
 2. Clik no mouse o botão direito e clik em obter informação/propriedade na pasta Passwords-master
 3. Abra o arquivo main.java
 4. Copie o diretorio Onde/Local e cole assim na path = "(colar)/passwords.csv" e pathAux = "(colar)/classifier_passwords.csv 
-5. Execute oarquivo
+5. Execute o arquivo
 
 # Ordenações
 - [x] SelectionSort
