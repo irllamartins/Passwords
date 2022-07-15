@@ -5,12 +5,12 @@ Ele consite de um arquivo csv e gerara outros arquivos atraves de estruturas de 
 > <b>Link do acesso ao documento:</b> https://docs.google.com/document/d/1Mfeco-adOz58s2IRGwqho9Dfbg5sFc7Ss-IKZ8QFTuA/edit?usp=sharing
 # Instruções de utilização
 1. Baixe os arquivos na area de trabalho
-2. Coloque o arquivo csv passwords.csv dentro da pasta Passwords-master
+2. Coloque o arquivo csv passwords.csv dentro da pasta Passwords-master/src
 3. Entre na pasta Passwords-master e encontre o main.java e execute
 
 # Alternativa 2
 1. Baixe os arquivos
-2. Coloque o arquivo csv passwords.csv dentro da pasta Passwords-master
+2. Coloque o arquivo csv passwords.csv dentro da pasta Passwords-master/src
 3. Entre na pasta Passwords-master usando o comando cd (mais o diretorio) e execute
 
 # Alternativa 3
