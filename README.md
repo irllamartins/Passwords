@@ -6,12 +6,12 @@ Ele consite de um arquivo csv e gerara outros arquivos atraves de estruturas de 
 # Instruções de utilização
 1. Baixe os arquivos na area de trabalho
 2. Coloque o arquivo csv passwords.csv dentro da pasta Passwords
-3. Entre na pasta Passwords e encontre o main.java e execute
+3. Entre na pasta Passwords e encontre o main.java e execute o arquivo Main.java
 
 # Alternativa 2
 1. Baixe os arquivos
 2. Coloque o arquivo csv passwords.csv dentro da pasta Passwords
-3. Entre na pasta Passwords usando o comando cd (mais o diretorio até a pasta Passwords) e execute
+3. Entre na pasta Passwords usando o comando cd (mais o diretorio até a pasta Passwords) e execute o arquivo Main.java
 
 # Alternativa 3
 1. Caso nenhuma das alternativas anteriores funcionar, use essa
