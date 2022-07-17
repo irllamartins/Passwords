@@ -7,7 +7,7 @@ public class Main {
 		
 		//String path = input.next();
 		String path = "./passwords.csv";
-		String pathAux = "password_classifier.csv";
+		String pathAux = "./password_classifier.csv";
 		
 		ClassificarSenha classificarSenha = new ClassificarSenha(path);
 		PasswordsFormated arquivo = new PasswordsFormated(pathAux);
