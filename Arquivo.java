@@ -6,7 +6,7 @@ public abstract class Arquivo {
 	public Arquivo() {
 
 	}
-	//responsavel por construir o caso da ordena��o decrescente
+	//responsavel por construir o caso da ordenacao decrescente
 	public Password[] construirCasoDecrescente(Password[] bancoDeDados){
 		Password[] banco = new Password[bancoDeDados.length];
 		
