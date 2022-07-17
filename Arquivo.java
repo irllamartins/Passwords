@@ -20,7 +20,7 @@ public abstract class Arquivo {
 	}
 	
 	//responsavel por criar e/ou escrever arquivo
-	public static void transcricao(Password[] bancoDeDados, String nomeArquivo) {
+	public void transcricao(Password[] bancoDeDados, String nomeArquivo) {
 
 		try {
 			FileWriter arq = new FileWriter(nomeArquivo);

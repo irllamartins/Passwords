@@ -108,13 +108,13 @@ public class CountingSort extends Arquivo {
 	//resposavel por chamar a ordenacao por data mes-ano com os tipos de casos 
 	public void transcricaoMonthCaso() {
 		System.out.println("#------------counting-Month------------#");
-		System.out.println("Nao e posivel ordenar");
+		System.out.println("Nao e possivel ordenar!\n");
 	
 	}
 	//resposavel por chamar a ordenacao por data com os tipos de casos 
 	public void transcricaoDataCaso() {
 		System.out.println("#------------counting-Date------------#");
-		System.out.println("Nao e posivel ordenar");
+		System.out.println("Nao e possivel ordenar!\n");
 	}
 	
 }

@@ -10,21 +10,22 @@ public class Main {
 		String pathAux = "./password_classifier.csv";
 		
 		ClassificarSenha classificarSenha = new ClassificarSenha(path);
-		PasswordsFormated arquivo = new PasswordsFormated(pathAux);
-		FiltrarSenha filtrarSenha = new FiltrarSenha(pathAux);
-		
-		InsertionSort insertionSort = new InsertionSort(arquivo.getBancoDeDados());
-		QuickSort quickSort = new QuickSort(arquivo.getBancoDeDados());
-		QuickSortMedian quickSortMedian = new QuickSortMedian(arquivo.getBancoDeDados());
-		MergeSort mergeSort = new MergeSort(arquivo.getBancoDeDados());
-		HeapSort heapSort = new HeapSort(arquivo.getBancoDeDados());
-		SelectionSort selectionSort = new SelectionSort(arquivo.getBancoDeDados());
-		CountingSort countingSort = new CountingSort(arquivo.getBancoDeDados());
-		
 		classificarSenha.transcricao();
-		arquivo.transcricaoFomatado();
+
+		PasswordsFormated passwordsFormated = new PasswordsFormated(pathAux);
+		passwordsFormated.transcricaoFomatado();
+
+		FiltrarSenha filtrarSenha = new FiltrarSenha(pathAux);
 		filtrarSenha.transcricaoClasses();
-		
+
+		InsertionSort insertionSort = new InsertionSort(passwordsFormated.getBancoDeDados());
+		QuickSort quickSort = new QuickSort(passwordsFormated.getBancoDeDados());
+		QuickSortMedian quickSortMedian = new QuickSortMedian(passwordsFormated.getBancoDeDados());
+		MergeSort mergeSort = new MergeSort(passwordsFormated.getBancoDeDados());
+		HeapSort heapSort = new HeapSort(passwordsFormated.getBancoDeDados());
+		SelectionSort selectionSort = new SelectionSort(passwordsFormated.getBancoDeDados());
+		CountingSort countingSort = new CountingSort(passwordsFormated.getBancoDeDados());
+
 		insertionSort.transcricaoLenghtCaso();
 		insertionSort.transcricaoMonthCaso();
 		insertionSort.transcricaoDataCaso();
@@ -40,7 +41,11 @@ public class Main {
 		heapSort.transcricaoLenghtCaso();
 		heapSort.transcricaoMonthCaso();
 		heapSort.transcricaoDataCaso();
-		
+
+		countingSort.transcricaoLenghtCaso();
+		countingSort.transcricaoMonthCaso();
+		countingSort.transcricaoDataCaso();
+
 		quickSort.transcricaoLenghtCaso();
 		quickSort.transcricaoMonthCaso();
 		quickSort.transcricaoDataCaso();
@@ -49,8 +54,7 @@ public class Main {
 		quickSortMedian.transcricaoMonthCaso();
 		quickSortMedian.transcricaoDataCaso();
 		
-		countingSort.transcricaoLenghtCaso();
-		
+
 		
 		
 	}

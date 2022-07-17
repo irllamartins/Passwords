@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -10,40 +7,39 @@ public class PasswordsFormated extends Arquivo{
 	private int linhas;
 
 	public PasswordsFormated(String path) {
-		
+
 		this.linhas = contarLinha(path);
 		this.bancoDeDados = ArquivoFormatado(linhas,path);
 
-	}	
+	}
 	public Password[] getBancoDeDados() {
 		return bancoDeDados;
 	}
-	
+
 	public void setBancoDeDados(Password[] bancoDeDados) {
 		this.bancoDeDados = bancoDeDados;
 	}
-	
+
 	public int getLinhas() {
 		return linhas;
 	}
-	
+
 	public void setLinhas(int linhas) {
 		this.linhas = linhas;
 	}
 
-	public Password[] ArquivoFormatado(int quantidade, String path) {
+	private Password[] ArquivoFormatado(int quantidade, String path) {
 
 		String linha = null;
 		int indice = 0;
-		Password[] bancoDeDados = new Password[quantidade];
+		Password[] banco = new Password[quantidade];
 		String colunas;
-
 		try {
 
 			BufferedReader arquivo = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
 
 			colunas = arquivo.readLine();
-			bancoDeDados[0] = new Password(colunas);
+			banco[0] = new Password(colunas);
 			indice++;
 
 			while ((linha = arquivo.readLine()) != null) {
@@ -52,30 +48,32 @@ public class PasswordsFormated extends Arquivo{
 
 					SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-					
-					bancoDeDados[indice] = new Password(dadosFormatados[0],verificarNumero(dadosFormatados[1]),formato.parse(formato.format(formatter.parse(dadosFormatados[2]))),formato.format(formatter.parse(dadosFormatados[2])),dadosFormatados[3]);
+
+					banco[indice] = new Password(dadosFormatados[0],verificarNumero(dadosFormatados[1]),formato.parse(formato.format(formatter.parse(dadosFormatados[2]))),formato.format(formatter.parse(dadosFormatados[2])),dadosFormatados[3]);
 					indice++;
 				} catch (ParseException e) {
 					System.err.println("Ocorreu um erro inesperado na convercao de data!\n");
 				}
 			}
-			
+
 			arquivo.close();
 		} catch (IOException e) {
 			System.err.println("Arquivo nao foi encontrado!Verifique o diretorio do arquivo!\n");
 		}
-		return bancoDeDados;
+
+		return banco;
 
 	}
-	
 
-	public static int contarLinha(String path) {
-		int contador = 0;
 
+	private int contarLinha(String path) {
+		int contador=0;
 		try {
+			//FileReader fr = new FileReader(path)
 			BufferedReader arquivo = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+			String linha;
 
-			while (arquivo.readLine() != null) {
+			while ((linha = arquivo.readLine())!=null) {
 				contador++;
 			}
 			arquivo.close();
@@ -87,8 +85,8 @@ public class PasswordsFormated extends Arquivo{
 		return contador;
 
 	}
-	
-	public static int verificarNumero(String palavra) {
+
+	private int verificarNumero(String palavra) {
 		int numero;
 		try {
 			numero = Integer.parseInt(palavra);
@@ -97,7 +95,7 @@ public class PasswordsFormated extends Arquivo{
 		}
 		return numero;
 	}
-	public static String[] tratamentoDados(String linha) {
+	private String[] tratamentoDados(String linha) {
 		String palavra = null;
 		String[] dadosFormatados = new String[4];
 		int indice = dadosFormatados.length - 1;
@@ -116,9 +114,9 @@ public class PasswordsFormated extends Arquivo{
 	}
 	public void transcricaoFomatado() {
 		transcricao(bancoDeDados,"passwords_formated_data.csv");
-		
-	}	
 
-	
+	}
+
+
 
 }
