@@ -13,6 +13,9 @@ Ele consite de um arquivo csv e gerara outros arquivos atraves de estruturas de 
 8. Novamente no cmd/prompt, "java Main"
 9. O programa irá executar e gerar os arquivos
 
+# Alternativa
+1. Caso houver erro, tente executar novamente no cmd/prompt, "java Main"
+
 # Ordenações
 - [x] SelectionSort
 - [x] InsertionSort
