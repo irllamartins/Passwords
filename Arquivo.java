@@ -6,7 +6,7 @@ public abstract class Arquivo {
 	public Arquivo() {
 
 	}
-	//responsavel por construir o caso da ordenação decrescente
+	//responsavel por construir o caso da ordenaï¿½ï¿½o decrescente
 	public Password[] construirCasoDecrescente(Password[] bancoDeDados){
 		Password[] banco = new Password[bancoDeDados.length];
 		
@@ -35,7 +35,7 @@ public abstract class Arquivo {
 			System.out.println("O Arquivo " + nomeArquivo + " gerado com sucesso!");
 
 		} catch (IOException e) {
-			System.err.println("O Arquivo não pode ser criado!\n");
+			System.err.println("O Arquivo nao pode ser criado!\n");
 		}
 
 	}
