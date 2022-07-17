@@ -56,13 +56,13 @@ public class PasswordsFormated extends Arquivo{
 					bancoDeDados[indice] = new Password(dadosFormatados[0],verificarNumero(dadosFormatados[1]),formato.parse(formato.format(formatter.parse(dadosFormatados[2]))),formato.format(formatter.parse(dadosFormatados[2])),dadosFormatados[3]);
 					indice++;
 				} catch (ParseException e) {
-					System.err.println("Ocorreu um erro inesperado na converçaõ de data!\n");
+					System.err.println("Ocorreu um erro inesperado na convercao de data!\n");
 				}
 			}
 			
 			arquivo.close();
 		} catch (IOException e) {
-			System.err.println("Arquivo não foi encontrado!Verifique o diretorio do arquivo!\n");
+			System.err.println("Arquivo nao foi encontrado!Verifique o diretorio do arquivo!\n");
 		}
 		return bancoDeDados;
 
@@ -81,7 +81,7 @@ public class PasswordsFormated extends Arquivo{
 			arquivo.close();
 
 		} catch (IOException e) {
-			System.err.println("Arquivo não foi encontrado!Verifique o diretorio do arquivo!\n");
+			System.err.println("Arquivo nao foi encontrado!Verifique o diretorio do arquivo!\n");
 		}
 
 		return contador;

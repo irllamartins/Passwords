@@ -92,7 +92,7 @@ public class CountingSort extends Arquivo {
 		
 	}
 	
-	//resposavel por chamar a ordena��o por tamanho de caracteres com os tipos de casos 
+	//resposavel por chamar a ordenacao por tamanho de caracteres com os tipos de casos 
 	public void transcricaoLenghtCaso() {
 
 		System.out.println("#------------counting-Lenght------------#");
@@ -105,13 +105,13 @@ public class CountingSort extends Arquivo {
 
 	}
 	
-	//resposavel por chamar a ordena��o por data mes-ano com os tipos de casos 
+	//resposavel por chamar a ordenacao por data mes-ano com os tipos de casos 
 	public void transcricaoMonthCaso() {
 		System.out.println("#------------counting-Month------------#");
 		System.out.println("Nao e posivel ordenar");
 	
 	}
-	//resposavel por chamar a ordena��o por data com os tipos de casos 
+	//resposavel por chamar a ordenacao por data com os tipos de casos 
 	public void transcricaoDataCaso() {
 		System.out.println("#------------counting-Date------------#");
 		System.out.println("Nao e posivel ordenar");

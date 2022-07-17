@@ -51,7 +51,7 @@ public class FiltrarSenha extends Arquivo {
 			arq.close();
 			arquivo.close();
 		} catch (IOException e) {
-			System.err.println("Arquivo não foi encontrado!Verifique o diretorio do arquivo!\n");
+			System.err.println("Arquivo nao foi encontrado!Verifique o diretorio do arquivo!\n");
 		}
 
 	}

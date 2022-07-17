@@ -36,7 +36,7 @@ public class HeapSort extends Arquivo {
 	}
 
 
-	//Ordenação do heapSort pelo tamanho 
+	//Ordenacao do heapSort pelo tamanho 
 	public Password[] heapSortLength(Password[] bancoDeDados) {
 		Password[] banco;
 
@@ -82,7 +82,7 @@ public class HeapSort extends Arquivo {
 	    }
 	}
 	
-	//Ordenação do heapSort pelo mes/ano
+	//Ordenacao do heapSort pelo mes/ano
 	public Password[] heapSortMonth(Password[] bancoDeDados) {
 		Password[] banco;
 
@@ -131,7 +131,7 @@ public class HeapSort extends Arquivo {
 	    }
 	}
 	
-	//Ordenação do heapSort pela data 
+	//Ordenacao do heapSort pela data 
 	public Password[] heapSortDate(Password[] bancoDeDados) {
 		Password[] banco;
 
@@ -179,7 +179,7 @@ public class HeapSort extends Arquivo {
 			
 	}
 	
-	//chama a ordenação que vai ser classificada pelo tamanho,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
+	//chama a ordenacao que vai ser classificada pelo tamanho,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
 	public void transcricaoLenghtCaso() {
 
 		System.out.println("#------------HeapSort-Lenght------------#");
@@ -192,7 +192,7 @@ public class HeapSort extends Arquivo {
 
 	}
 	
-	//chama a ordenação que vai ser classificada pelo mes/ano,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
+	//chama a ordenacao que vai ser classificada pelo mes/ano,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
 	public void transcricaoMonthCaso() {
 		System.out.println("#------------HeapSort-Month------------#");
 		transcricao(casoMedio,"passwords_data_month_heapSort_medioCaso.csv");
@@ -203,7 +203,7 @@ public class HeapSort extends Arquivo {
 		heapSortMonth(melhorCaso);
 	}
 	
-	//chama a ordenação que vai ser classificada pela data,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
+	//chama a ordenacao que vai ser classificada pela data,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
 	public void transcricaoDataCaso() {
 		System.out.println("#------------HeapSort-Date------------#");
 		transcricao(casoMedio,"passwords_data_heapSort_medioCaso.csv");;

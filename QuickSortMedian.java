@@ -76,7 +76,7 @@ public class QuickSortMedian extends Arquivo {
 		}
 	}
 
-	//ordenação do quickSort mediana de 3 pelo tamanho
+	//ordenacao do quickSort mediana de 3 pelo tamanho
 	public int particaoLength(Password[] vetor, int inicio, int fim) {
 		int meio = (int) (inicio + fim) / 2;
 		int a = vetor[inicio].getLength();
@@ -124,7 +124,7 @@ public class QuickSortMedian extends Arquivo {
 		return i + 1;
 	}
 	
-	//ordenação do quickSort mediana de 3 pelo mes/ano
+	//ordenacao do quickSort mediana de 3 pelo mes/ano
 	public void quickSortMedianMonth(Password[] vetor, int inicio, int fim) {
 	if (inicio < fim) {
 			int meio = particaoMonth(vetor, inicio, fim);
@@ -185,7 +185,7 @@ public class QuickSortMedian extends Arquivo {
 		return i + 1;
 	}
 	
-	//ordenação do quickSort mediana de 3 pela data
+	//ordenacao do quickSort mediana de 3 pela data
 	public void quickSortMedianDate(Password[] vetor, int inicio, int fim) {
 		if (inicio < fim) {
 			int meio = particaoDate(vetor, inicio, fim);
@@ -244,7 +244,7 @@ public class QuickSortMedian extends Arquivo {
 		
 	}
 	
-	//chama a ordenação que vai ser classificada pelo tamanho,gera os casos crescente e decrescentemente e finaliza criando o arquivo
+	//chama a ordenacao que vai ser classificada pelo tamanho,gera os casos crescente e decrescentemente e finaliza criando o arquivo
 	public void transcricaoLenghtCaso() {
 	System.out.println("#------------QuickSortMedian-Lenght------------#");
 		transcricao(casoMedio, "passwords_length_quickSortMedian_medioCaso.csv");
@@ -256,7 +256,7 @@ public class QuickSortMedian extends Arquivo {
 		startQuickSortMedianLength(melhorCaso, melhorCaso.length - 1);
 	}
 	
-	//chama a ordenação que vai ser classificada pelo mes/ano,gera os casos crescente e decrescentemente e finaliza criando o arquivo
+	//chama a ordenacao que vai ser classificada pelo mes/ano,gera os casos crescente e decrescentemente e finaliza criando o arquivo
 	public void transcricaoMonthCaso() {
 		System.out.println("#------------QuickSortMedian-Month------------#");
 		transcricao(casoMedio, "passwords_data_month_quickSortMedian_medioCaso.csv");
@@ -267,7 +267,7 @@ public class QuickSortMedian extends Arquivo {
 		startQuickSortMedianMonth(melhorCaso, melhorCaso.length - 1);
 	}
 	
-	//chama a ordenação que vai ser classificada pela data,gera os casos crescente e decrescentemente e finaliza criando o arquivo
+	//chama a ordenacao que vai ser classificada pela data,gera os casos crescente e decrescentemente e finaliza criando o arquivo
 	public void transcricaoDataCaso() {
 		System.out.println("#------------QuickSortMedian-Date------------#");
 		transcricao(casoMedio, "passwords_data_quickSortMedian_medioCaso.csv");

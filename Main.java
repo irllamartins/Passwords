@@ -6,7 +6,7 @@ public class Main {
 		Scanner input = new Scanner(System.in);
 		
 		//String path = input.next();
-		String path = "passwords.csv";
+		String path = "./passwords.csv";
 		String pathAux = "password_classifier.csv";
 		
 		ClassificarSenha classificarSenha = new ClassificarSenha(path);

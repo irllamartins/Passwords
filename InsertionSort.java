@@ -34,7 +34,7 @@ public class InsertionSort extends Arquivo {
 		this.melhorCaso = melhorCaso;
 	}
 
-	//ordenação insertionSort pelo tamanho
+	//ordenacao insertionSort pelo tamanho
 	public Password[] insertionSortLength(Password[] bancoDeDados) {
 	    int j;
 	    Password[] banco=bancoDeDados.clone();
@@ -56,7 +56,7 @@ public class InsertionSort extends Arquivo {
 		return banco; 
 	}
 	
-	//ordenação insertionSort pelo mes/ano
+	//ordenacao insertionSort pelo mes/ano
 	public Password[] insertionSortMonth(Password[] bancoDeDados){
 	    int j;
 	    Password[] banco=bancoDeDados.clone();
@@ -79,7 +79,7 @@ public class InsertionSort extends Arquivo {
 				
 			} catch (ParseException e) {
 
-				System.err.println("Não foi possivel converter data!");
+				System.err.println("Nao foi possivel converter data!");
 			}
 			banco[j+1] = key;
 			
@@ -89,7 +89,7 @@ public class InsertionSort extends Arquivo {
 		return banco; 
 	}
 	
-	//ordenação insertionSort pela data
+	//ordenacao insertionSort pela data
 	public Password[] insertionSortDate(Password[] bancoDeDados){
 	    int j;
 	    Password[] banco=bancoDeDados.clone();
@@ -118,7 +118,7 @@ public class InsertionSort extends Arquivo {
 		
 	}
 	
-	//chama a ordenação que vai ser classificada pelo tamanho,gera os casos crescente e decrescentemente e finaliza criando o arquivo
+	//chama a ordenacao que vai ser classificada pelo tamanho,gera os casos crescente e decrescentemente e finaliza criando o arquivo
 	public void transcricaoLenghtCaso() {
 		System.out.println("#------------InsertSort-Lenght------------#");
 		transcricao(casoMedio, "passwords_length_insertionSort_medioCaso.csv");
@@ -129,7 +129,7 @@ public class InsertionSort extends Arquivo {
 		insertionSortLength(melhorCaso);
 	}
 	
-	//chama a ordenação que vai ser classificada pelo mes/data,gera os casos crescente e decrescentemente e finaliza criando o arquivo
+	//chama a ordenacao que vai ser classificada pelo mes/data,gera os casos crescente e decrescentemente e finaliza criando o arquivo
 	public void transcricaoMonthCaso() {
 		System.out.println("#------------InsertSort-Month------------#");
 		transcricao(casoMedio, "passwords_data_month_insertionSort_medioCaso.csv");
@@ -140,7 +140,7 @@ public class InsertionSort extends Arquivo {
 		insertionSortMonth(melhorCaso);
 	}
 	
-	//chama a ordenação que vai ser classificada pela data,gera os casos crescente e decrescentemente e finaliza criando o arquivo
+	//chama a ordenacao que vai ser classificada pela data,gera os casos crescente e decrescentemente e finaliza criando o arquivo
 	public void transcricaoDataCaso() {
 		System.out.println("#------------InsertSort-Date------------#");
 		transcricao(casoMedio, "passwords_data_insertionSort_medioCaso.csv");

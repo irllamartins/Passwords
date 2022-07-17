@@ -76,7 +76,7 @@ public class MergeSort extends Arquivo{
 		}
 	}
 	
-	//ordenação mergeSort pelo tamanho
+	//ordenacao mergeSort pelo tamanho
 	private void mergeLength(Password[] vetor, int inicio, int meio, int fim) {
 		int tamL = meio - inicio + 1;
 		int tamR = fim - meio;
@@ -111,7 +111,7 @@ public class MergeSort extends Arquivo{
 		}
 	}
 	
-	//ordenação mergeSort pelo mes/ano
+	//ordenacao mergeSort pelo mes/ano
 	public void mergeSortMonth(Password[] vetor, int inicio, int fim) {
 		if (inicio < fim) {
 			int meio = (inicio + fim) / 2;
@@ -169,7 +169,7 @@ public class MergeSort extends Arquivo{
 		}
 	}
 	
-	//ordenação mergeSort pela data
+	//ordenacao mergeSort pela data
 	private void mergeDate(Password vetor[], int inicio, int meio, int fim) {
 		int tamL = meio - inicio + 1;
 		int tamR = fim - meio;
@@ -214,7 +214,7 @@ public class MergeSort extends Arquivo{
 		
 	}
 	
-	//resposavel por chamar a ordenação por tamanho com os tipos de casos e criar arquivo
+	//resposavel por chamar a ordenacao por tamanho com os tipos de casos e criar arquivo
 	public void transcricaoLenghtCaso() {
 
 		System.out.println("#------------MergeSort-Lenght------------#");
@@ -227,7 +227,7 @@ public class MergeSort extends Arquivo{
 
 	}
 	
-	//resposavel por chamar a ordenação por mes/ano com os tipos de casos e criar arquivo
+	//resposavel por chamar a ordenacao por mes/ano com os tipos de casos e criar arquivo
 	public void transcricaoMonthCaso() {
 		System.out.println("#------------MergeSort-Month------------#");
 		transcricao(casoMedio,"passwords_month_mergeSort_medioCaso.csv");
@@ -238,7 +238,7 @@ public class MergeSort extends Arquivo{
 		startMergeSortMonth(melhorCaso, melhorCaso.length - 1);
 	}
 	
-	//resposavel por chamar a ordenação por data com os tipos de casos e criar arquivo
+	//resposavel por chamar a ordenacao por data com os tipos de casos e criar arquivo
 	public void transcricaoDataCaso() {
 		System.out.println("#------------MergeSort-Date------------#");
 		transcricao(casoMedio,"passwords_data_mergeSort_medioCaso.csv");

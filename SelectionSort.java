@@ -36,7 +36,7 @@ public class SelectionSort extends Arquivo {
 	}
 	
 
-	//Ordenação de SelectSort por tamanho de caractere  
+	//Ordenacao de SelectSort por tamanho de caractere  
 	public Password[] SelectionSortLength(Password[] bancoDeDados) {
 		Password[] banco = bancoDeDados.clone();
 		
@@ -61,7 +61,7 @@ public class SelectionSort extends Arquivo {
 		return banco;
 	}
 	
-	//Ordenação de SelectSort por data mês-ano
+	//Ordenacaoo de SelectSort por data mes-ano
 	private Password[] SelectionSortMonth(Password[] bancoDeDados) {
 		
 		Password[] banco=bancoDeDados.clone();
@@ -91,7 +91,7 @@ public class SelectionSort extends Arquivo {
 		return banco;
 	}
 	
-	//Ordenação de SelectSort por data
+	//Ordenacao de SelectSort por data
 	private Password[] SelectionSortDate(Password[] bancoDeDados) {
 		
 		Password[] banco=bancoDeDados.clone();
@@ -121,7 +121,7 @@ public class SelectionSort extends Arquivo {
 		
 	}
 	
-	//resposavel por chamar a ordenação por tamanho de caracteres com os tipos de casos 
+	//resposavel por chamar a ordenacao por tamanho de caracteres com os tipos de casos 
 	public void transcricaoLenghtCaso() {
 
 		System.out.println("#------------Selection-Lenght------------#");
@@ -134,7 +134,7 @@ public class SelectionSort extends Arquivo {
 
 	}
 	
-	//resposavel por chamar a ordenação por data mes-ano com os tipos de casos 
+	//resposavel por chamar a ordenacao por data mes-ano com os tipos de casos 
 	public void transcricaoMonthCaso() {
 		System.out.println("#------------Selection-Month------------#");
 		transcricao(casoMedio,"passwords_data_month_selectionSort_medioCaso.csv");
@@ -144,7 +144,7 @@ public class SelectionSort extends Arquivo {
 		transcricao(melhorCaso,"passwords_data_month_selectionSort_melhorCaso.csv");
 		SelectionSortMonth(melhorCaso);
 	}
-	//resposavel por chamar a ordenação por data com os tipos de casos 
+	//resposavel por chamar a ordenacao por data com os tipos de casos 
 	public void transcricaoDataCaso() {
 		System.out.println("#------------Selection-Date------------#");
 		transcricao(casoMedio,"passwords_data_selectionSort_medioCaso.csv");

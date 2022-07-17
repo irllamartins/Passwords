@@ -69,7 +69,7 @@ public class QuickSort extends Arquivo {
 		return banco;
 	}
 	
-	//ordenação do quickSort pelo tamahno
+	//ordenacao do quickSort pelo tamahno
 	public void quickSortLenght(Password[] vetor, int inicio, int fim) {
 		if (inicio < fim) {
 			int meio = particaoLenght(vetor, inicio, fim);
@@ -92,7 +92,7 @@ public class QuickSort extends Arquivo {
 		return i + 1;
 	}
 	
-	//ordenação do quickSort pelo mes/ano 
+	//ordenacao do quickSort pelo mes/ano 
 	public void quickSortMonth(Password[] vetor, int inicio, int fim) {
 
 		if (inicio < fim) {
@@ -128,7 +128,7 @@ public class QuickSort extends Arquivo {
 
 		return i + 1;
 	}
-	//ordenação do quickSort pela data
+	//ordenacao do quickSort pela data
 	public void quickSortDate(Password[] vetor, int inicio, int fim) {
 
 		if (inicio < fim) {
@@ -165,7 +165,7 @@ public class QuickSort extends Arquivo {
 		setPiorCaso(construirCasoDecrescente(melhorCaso.clone()));
 
 	}
-	//chama a ordenação que vai ser classificada pelo tamanho,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
+	//chama a ordenacao que vai ser classificada pelo tamanho,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
 	public void transcricaoLenghtCaso() {
 		System.out.println("#------------QuickSort-Lenght------------#");
 		transcricao(casoMedio, "passwords_length_quickSort_medioCaso.csv");
@@ -176,7 +176,7 @@ public class QuickSort extends Arquivo {
 		startQuickSortLength(melhorCaso, melhorCaso.length - 1);
 	}
 
-	//chama a ordenação que vai ser classificada pelo mes/ano,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
+	//chama a ordenacao que vai ser classificada pelo mes/ano,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
 	public void transcricaoMonthCaso() {
 		System.out.println("#------------QuickSort-Month------------#");
 		transcricao(casoMedio, "passwords_data_month_quickSort_medioCaso.csv");
@@ -187,7 +187,7 @@ public class QuickSort extends Arquivo {
 		startQuickSortMonth(melhorCaso, melhorCaso.length - 1);
 	}
 
-	//chama a ordenação que vai ser classificada pela data,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
+	//chama a ordenacao que vai ser classificada pela data,gera os casos crescente e decrescentemente e finaliza criando o arquivo 
 	public void transcricaoDataCaso() {
 		System.out.println("#------------QuickSort-Date------------#");
 
